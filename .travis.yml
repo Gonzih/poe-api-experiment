@@ -3,4 +3,13 @@ language: go
 go:
   - tip
 
-script: make test
+addons:
+  apt:
+    packages:
+      - protobuf-compiler
+
+before_install:
+  - make deps
+
+script:
+  - make test
