@@ -35,7 +35,7 @@ func main() {
 	// log.Println(string(body))
 	// err = json.Unmarshal(body, &data)
 
-	unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: true}
+	unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: false}
 	err = unmarshaller.Unmarshal(resp.Body, &data)
 
 	if err != nil {
@@ -45,4 +45,22 @@ func main() {
 	// log.Println(data)
 
 	log.Println("Done!")
+
+	for _, stash := range data.Stashes {
+		if stash != nil {
+			for _, item := range stash.Items {
+				if item != nil {
+					log.Println()
+					for _, property := range item.GetAdditionalProperties() {
+						if property != nil {
+							for _, value := range property.Values {
+								log.Printf("%s -> %#v", property.GetName(), value)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 }

@@ -21,7 +21,7 @@ message Stash {
 
 message Item {
   bool  byssJewel = 1;
-  repeated AdditionalProperty  additionalProperties = 2;
+  repeated Property  additionalProperties = 2;
   string  artFilename = 3;
   Category category = 4;
   bool corrupted = 5;
@@ -46,15 +46,15 @@ message Item {
   bool lockedToCharacter = 24;
   int64 maxStackSize = 25;
   string  name = 26;
-  repeated Requirement nextLevelRequirements = 27;
+  repeated Property nextLevelRequirements = 27;
   string  note = 28;
   repeated Property  properties = 29;
   string  prophecyDiffText = 30;
   string prophecyText = 31;
-  repeated Requirement requirements = 32;
+  repeated Property requirements = 32;
   string secDescrText = 33;
   bool shaper = 34;
-  repeated SocketedItem socketedItems = 35;
+  repeated Item socketedItems = 35;
   repeated Socket sockets = 36;
   int64 stackSize = 37;
   bool support = 38;
@@ -65,31 +65,37 @@ message Item {
   int64 w = 43;
   int64 x = 44;
   int64 y = 45;
-}
-
-message AdditionalProperty {
-
+  string colour = 46;
+  int64 socket = 47;
 }
 
 message Category {
-  repeated string accesories = 1;
+  repeated string accessories = 1;
   repeated string armour = 2;
   repeated string jewels = 3;
   repeated string weapons = 4;
-}
-
-message Requirement {
-
-}
-
-message SocketedItem {
-
+  repeated string gems = 5;
+  repeated string flasks = 6;
+  repeated string maps = 7;
+  repeated string currency = 8;
+  repeated string cards = 9;
 }
 
 message Property {
+  string name = 1;
+  repeated PropertyValue values = 2 [(gogoproto.customtype) = "PropValueT"];
+  int64 displayMode = 3;
+  int64 type = 4;
+  float progress = 5;
+}
 
+message PropertyValue {
+  string value = 1;
+  int64 valueType = 2;
 }
 
 message Socket {
-
+  int64 group = 1;
+  string attr = 2;
+  string sColour = 3;
 }
