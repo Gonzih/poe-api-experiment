@@ -3,12 +3,8 @@ language: go
 go:
   - tip
 
-addons:
-  apt:
-    packages:
-      - protobuf-compiler
-
 before_install:
+  - ./.travis-install-protoc.sh
   - make deps
 
 script:
