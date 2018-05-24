@@ -12,7 +12,7 @@ import (
 )
 
 func httpGetBody(url string) io.ReadCloser {
-	resp, err := http.Get("http://www.pathofexile.com/api/public-stash-tabs?")
+	resp, err := http.Get(url)
 	if err != nil {
 		panic(err)
 	}
@@ -22,9 +22,10 @@ func httpGetBody(url string) io.ReadCloser {
 
 func TestRealHttpRequest(t *testing.T) {
 	id := ""
+	c := 0
 
 	for {
-		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?%s", id)
+		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?id=%s", id)
 
 		var data Response
 
@@ -39,16 +40,15 @@ func TestRealHttpRequest(t *testing.T) {
 			assert.True(t, true)
 		}
 
-		log.Println("Done!")
+		log.Printf("Done! %s", url)
 
-		if len(id) > 0 {
+		c++
+		id = data.GetNextChangeId()
+
+		if c >= 10 {
 			break
 		}
-
-		id = data.GetNextChangeId()
 	}
-
-	// log.Println("Done!")
 
 	// for _, stash := range data.Stashes {
 	// 	if stash != nil {
