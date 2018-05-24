@@ -3,7 +3,6 @@ package main
 import (
 	"testing"
 
-	"github.com/gogo/protobuf/proto"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -12,19 +11,55 @@ func TestBasicJSONUnmarashel(t *testing.T) {
 
 	val.UnmarshalJSON([]byte(`["35%",1]`))
 
-	assert.Equal(t, val.GetValue(), "35%")
-	assert.Equal(t, val.GetValueType(), int64(1))
+	assert.Equal(t, "35%", val.GetValue())
+	assert.Equal(t, int64(1), val.GetValueType())
 }
 
-func TestBasicProtoRemashalling(t *testing.T) {
+func TestBasicSize(t *testing.T) {
 	v := `11\/315313`
 	vt := int64(1)
 	val := PropValueT{Value: v, ValueType: vt}
 
-	payload, err := proto.Marshal(val)
-	assert.Nil(t, err)
-	assert.Len(t, payload, 10)
+	assert.Equal(t, 14, val.Size())
+}
 
-	// assert.Equal(t, val.GetValue(), "35%")
-	// assert.Equal(t, val.GetValueType(), int64(1))
+func TestBasicMarshalTo(t *testing.T) {
+	v := `11\/315313oe`
+	vt := int64(1)
+	val := PropValueT{Value: v, ValueType: vt}
+
+	data := make([]byte, val.Size())
+	size, err := val.MarshalTo(data)
+
+	assert.Nil(t, err)
+	assert.Len(t, data, 16)
+	assert.Equal(t, 16, size)
+}
+
+func TestBasicProtoMarshal(t *testing.T) {
+	v := `11\/315313e`
+	vt := int64(1)
+	val := PropValueT{Value: v, ValueType: vt}
+
+	data, err := val.Marshal()
+	assert.Nil(t, err)
+	assert.Len(t, data, 15)
+}
+
+func TestBasicProtoRemarshal(t *testing.T) {
+	v := `11\/315313eooeo`
+	vt := int64(1)
+	val := PropValueT{Value: v, ValueType: vt}
+
+	data, err := val.Marshal()
+	assert.Nil(t, err)
+	assert.Len(t, data, 19)
+
+	val2 := PropValueT{}
+
+	err = val2.Unmarshal(data)
+	assert.Nil(t, err)
+
+	assert.Equal(t, v, val2.GetValue())
+	assert.Equal(t, vt, val2.GetValueType())
 }

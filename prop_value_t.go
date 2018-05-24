@@ -13,9 +13,9 @@ type PropValueT struct {
 	ValueType int64  `protobuf:"varint,2,opt,name=valueType,proto3" json:"valueType,omitempty"`
 }
 
-func (m PropValueT) Reset()                     { m = PropValueT{} }
-func (m PropValueT) String() string             { return proto.CompactTextString(m) }
-func (PropValueT) ProtoMessage()                {}
+func (m *PropValueT) Reset()                    { *m = PropValueT{} }
+func (m *PropValueT) String() string            { return proto.CompactTextString(m) }
+func (*PropValueT) ProtoMessage()               {}
 func (*PropValueT) Descriptor() ([]byte, []int) { return fileDescriptorResponse, []int{5} }
 
 func (m *PropValueT) GetValue() string {
@@ -61,7 +61,7 @@ func (m *PropValueT) MarshalTo(dAtA []byte) (int, error) {
 	return i, nil
 }
 
-func (m PropValueT) Unmarshal(dAtA []byte) error {
+func (m *PropValueT) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
