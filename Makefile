@@ -10,7 +10,7 @@ proto: deps
 	Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types:. \
 	*.proto
 
-bulid: proto
+build: proto
 	vgo build -o poe .
 
 pull: build
