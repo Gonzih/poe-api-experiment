@@ -67,6 +67,7 @@ message Item {
   int64 y = 45;
   string colour = 46;
   int64 socket = 47;
+  bool thRaceReward = 48;
 }
 
 message Category {

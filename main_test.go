@@ -21,11 +21,18 @@ func httpGetBody(url string) io.ReadCloser {
 }
 
 func TestRealHttpRequest(t *testing.T) {
+	if testing.Short() {
+		t.Skip("Skipping test due to short run")
+		return
+	}
+
 	id := ""
 	c := 0
 
 	for {
 		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?id=%s", id)
+
+		log.Println(url)
 
 		var data Response
 
@@ -40,7 +47,8 @@ func TestRealHttpRequest(t *testing.T) {
 			assert.True(t, true)
 		}
 
-		log.Printf("Done! %s", url)
+		log.Println("Done!")
+		log.Println(c)
 
 		c++
 		id = data.GetNextChangeId()
