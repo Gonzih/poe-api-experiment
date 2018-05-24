@@ -6,6 +6,8 @@ go:
 sudo: required
 
 before_install:
+  - go get -u golang.org/x/vgo
+  - vgo version
   - ./.travis-install-protoc.sh
   - protoc --version
   - make deps
