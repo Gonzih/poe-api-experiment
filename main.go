@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/gogo/protobuf/jsonpb"
 	proto "github.com/gogo/protobuf/proto"
@@ -112,6 +113,8 @@ func pull(dbPath string) {
 		if len(nextChangeID) == 0 {
 			break
 		}
+
+		time.Sleep(time.Second)
 	}
 }
 
