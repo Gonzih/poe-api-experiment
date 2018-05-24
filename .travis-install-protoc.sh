@@ -2,11 +2,10 @@
 
 set -e
 
-# check to see if protobuf folder is empty
-if [ ! -d "$HOME/protobuf/lib" ]; then
-  wget https://protobuf.googlecode.com/files/protobuf-2.4.1.tar.gz
-  tar -xzvf protobuf-2.4.1.tar.gz
-  cd protobuf-2.4.1 && ./configure --prefix=$HOME/protobuf && make && make install
+if [ ! -f "/usr/bin/protoc" ]; then
+  wget https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-linux-x86_64.zip -O protobuf.zip
+  echo 'a5f0bf7d8534acca7364b2a263910a6d  protobuf.zip' | md5sum --check
+  unzip protobuf.zip -d /usr
 else
   echo "Using cached directory."
 fi
