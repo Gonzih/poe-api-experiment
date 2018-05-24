@@ -3,6 +3,8 @@ language: go
 go:
   - tip
 
+sudo: required
+
 before_install:
   - ./.travis-install-protoc.sh
   - make deps
