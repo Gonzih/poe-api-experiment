@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
-	"net/http"
 	"testing"
 
 	"github.com/gogo/protobuf/jsonpb"
@@ -18,7 +16,7 @@ func TestRealHttpRequest(t *testing.T) {
 	}
 
 	nextChangeID := ""
-	counter 0
+	counter := 0
 
 	for {
 		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?id=%s", nextChangeID)
@@ -37,12 +35,12 @@ func TestRealHttpRequest(t *testing.T) {
 		}
 
 		log.Println("Done!")
-		log.Println(c)
+		log.Println(counter)
 
 		counter++
 		nextChangeID = data.GetNextChangeId()
 
-		if c >= 100 {
+		if counter >= 100 {
 			break
 		}
 	}

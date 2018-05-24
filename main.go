@@ -124,6 +124,6 @@ func main() {
 	case "list":
 		list("data.bin")
 	default:
-		log.Fatal("Uknown command %s", command)
+		log.Fatalf("Uknown command %s", command)
 	}
 }
