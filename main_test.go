@@ -40,7 +40,7 @@ func TestRealHttpRequest(t *testing.T) {
 		counter++
 		nextChangeID = data.GetNextChangeId()
 
-		if counter >= 100 {
+		if counter >= 3 {
 			break
 		}
 	}
