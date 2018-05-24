@@ -23,7 +23,7 @@ message Item {
   bool  byssJewel = 1;
   repeated AdditionalProperty  additionalProperties = 2;
   string  artFilename = 3;
-  /* map<string, string> category = 4; */
+  Category category = 4;
   bool corrupted = 5;
   repeated string cosmeticMods = 6;
   repeated string craftedMods = 7;
@@ -72,7 +72,10 @@ message AdditionalProperty {
 }
 
 message Category {
-
+  repeated string accesories = 1;
+  repeated string armour = 2;
+  repeated string jewels = 3;
+  repeated string weapons = 4;
 }
 
 message Requirement {
