@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package main;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+message Response {
+  string next_change_id = 1;
+  repeated Stash stashes = 2;
+}
+
+message Stash {
+  string id = 1;
+  bool public = 2;
+  string accountName = 3;
+  string lastCharacterName = 4;
+  string stash = 5;
+  string stashType = 6;
+  repeated Item items = 7;
+}
+
+message Item {
+  bool  byssJewel = 1;
+  repeated AdditionalProperty  additionalProperties = 2;
+  string  artFilename = 3;
+  /* map<string, string> category = 4; */
+  bool corrupted = 5;
+  repeated string cosmeticMods = 6;
+  repeated string craftedMods = 7;
+  string descrText = 8;
+  bool duplicated = 9;
+  bool elder = 10;
+  repeated string enchantMods = 11;
+  repeated string explicitMods = 12;
+  repeated string flavourText = 13;
+  int64 frameType = 14;
+  int64 h = 15;
+  string  icon = 16;
+  string  id = 17;
+  bool identified = 18;
+  int64 ilvl = 19;
+  repeated string implicitMods = 20;
+  string  inventoryId = 21;
+  bool isRelic = 22;
+  string league = 23;
+  bool lockedToCharacter = 24;
+  int64 maxStackSize = 25;
+  string  name = 26;
+  repeated Requirement nextLevelRequirements = 27;
+  string  note = 28;
+  repeated Property  properties = 29;
+  string  prophecyDiffText = 30;
+  string prophecyText = 31;
+  repeated Requirement requirements = 32;
+  string secDescrText = 33;
+  bool shaper = 34;
+  repeated SocketedItem socketedItems = 35;
+  repeated Socket sockets = 36;
+  int64 stackSize = 37;
+  bool support = 38;
+  int64 talismanTier = 39;
+  string typeLine = 40;
+  repeated string utilityMods = 41;
+  bool verified = 42;
+  int64 w = 43;
+  int64 x = 44;
+  int64 y = 45;
+}
+
+message AdditionalProperty {
+
+}
+
+message Category {
+
+}
+
+message Requirement {
+
+}
+
+message SocketedItem {
+
+}
+
+message Property {
+
+}
+
+message Socket {
+
+}
