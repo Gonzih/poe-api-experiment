@@ -9,3 +9,6 @@ proto:
 
 run: proto
 	vgo run *.go
+
+test: proto
+	vgo test
