@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"io"
+	"log"
 	"net/http"
 	"testing"
 
@@ -8,22 +11,41 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRealHttpRequest(t *testing.T) {
-
+func httpGetBody(url string) io.ReadCloser {
 	resp, err := http.Get("http://www.pathofexile.com/api/public-stash-tabs?")
 	if err != nil {
 		panic(err)
 	}
-	var data Response
 
-	defer resp.Body.Close()
-	unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: false}
-	err = unmarshaller.Unmarshal(resp.Body, &data)
+	return resp.Body
+}
 
-	assert.Nil(t, err)
+func TestRealHttpRequest(t *testing.T) {
+	id := ""
 
-	if err == nil {
-		assert.True(t, true)
+	for {
+		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?%s", id)
+
+		var data Response
+
+		body := httpGetBody(url)
+		defer body.Close()
+		unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: false}
+		err := unmarshaller.Unmarshal(body, &data)
+
+		assert.Nil(t, err)
+
+		if err == nil {
+			assert.True(t, true)
+		}
+
+		log.Println("Done!")
+
+		if len(id) > 0 {
+			break
+		}
+
+		id = data.GetNextChangeId()
 	}
 
 	// log.Println("Done!")
