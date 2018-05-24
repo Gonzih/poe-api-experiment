@@ -11,28 +11,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func httpGetBody(url string) io.ReadCloser {
-	resp, err := http.Get(url)
-	if err != nil {
-		panic(err)
-	}
-
-	return resp.Body
-}
-
 func TestRealHttpRequest(t *testing.T) {
 	if testing.Short() {
 		t.Skip("Skipping test due to short run")
 		return
 	}
 
-	id := ""
-	c := 0
+	nextChangeID := ""
+	counter 0
 
 	for {
-		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?id=%s", id)
-
-		log.Println(url)
+		url := fmt.Sprintf("http://www.pathofexile.com/api/public-stash-tabs?id=%s", nextChangeID)
 
 		var data Response
 
@@ -50,10 +39,10 @@ func TestRealHttpRequest(t *testing.T) {
 		log.Println("Done!")
 		log.Println(c)
 
-		c++
-		id = data.GetNextChangeId()
+		counter++
+		nextChangeID = data.GetNextChangeId()
 
-		if c >= 10 {
+		if c >= 100 {
 			break
 		}
 	}
