@@ -9,23 +9,31 @@ import (
 	"github.com/gogo/protobuf/proto"
 )
 
-type AttrAttrT struct {
-	Attr string `protobuf:"bytes,1,opt,name=attr,proto3" json:"attr,omitempty"`
+type BoolStringT struct {
+	Value      string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	WasBoolean bool   `protobuf:"bytes,2,opt,name=wasBoolean,proto3" json:"wasBoolean,omitempty"`
 }
 
-func (m *AttrAttrT) Reset()                    { *m = AttrAttrT{} }
-func (m *AttrAttrT) String() string            { return proto.CompactTextString(m) }
-func (*AttrAttrT) ProtoMessage()               {}
-func (*AttrAttrT) Descriptor() ([]byte, []int) { return fileDescriptorResponse, []int{5} }
+func (m *BoolStringT) Reset()                    { *m = BoolStringT{} }
+func (m *BoolStringT) String() string            { return proto.CompactTextString(m) }
+func (*BoolStringT) ProtoMessage()               {}
+func (*BoolStringT) Descriptor() ([]byte, []int) { return fileDescriptorResponse, []int{5} }
 
-func (m *AttrAttrT) GetAttr() string {
+func (m *BoolStringT) GetValue() string {
 	if m != nil {
-		return m.Attr
+		return m.Value
 	}
 	return ""
 }
 
-func (m *AttrAttrT) Marshal() (dAtA []byte, err error) {
+func (m *BoolStringT) GetWasBoolean() bool {
+	if m != nil {
+		return m.WasBoolean
+	}
+	return false
+}
+
+func (m *BoolStringT) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalTo(dAtA)
@@ -35,21 +43,21 @@ func (m *AttrAttrT) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *AttrAttrT) MarshalTo(dAtA []byte) (int, error) {
+func (m *BoolStringT) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
-	if len(m.Attr) > 0 {
+	if len(m.Value) > 0 {
 		dAtA[i] = 0xa
 		i++
-		i = encodeVarintResponse(dAtA, i, uint64(len(m.Attr)))
-		i += copy(dAtA[i:], m.Attr)
+		i = encodeVarintResponse(dAtA, i, uint64(len(m.Value)))
+		i += copy(dAtA[i:], m.Value)
 	}
 	return i, nil
 }
 
-func (m *AttrAttrT) Unmarshal(dAtA []byte) error {
+func (m *BoolStringT) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -72,15 +80,15 @@ func (m *AttrAttrT) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AttrAttrT: wiretype end group for non-group")
+			return fmt.Errorf("proto: BoolStringT: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AttrAttrT: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: BoolStringT: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Attr", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -105,7 +113,7 @@ func (m *AttrAttrT) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Attr = string(dAtA[iNdEx:postIndex])
+			m.Value = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -129,10 +137,10 @@ func (m *AttrAttrT) Unmarshal(dAtA []byte) error {
 	return nil
 }
 
-func (m *AttrAttrT) Size() (n int) {
+func (m *BoolStringT) Size() (n int) {
 	var l int
 	_ = l
-	l = len(m.Attr)
+	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovResponse(uint64(l))
 	}
@@ -141,11 +149,11 @@ func (m *AttrAttrT) Size() (n int) {
 
 // ======== Manually implemented ============== //
 
-func (t AttrAttrT) MarshalJSON() ([]byte, error) {
+func (t BoolStringT) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&t)
 }
 
-func (t *AttrAttrT) UnmarshalJSON(data []byte) error {
+func (t *BoolStringT) UnmarshalJSON(data []byte) error {
 	var v interface{}
 	var s string
 	err := json.Unmarshal(data, &v)
@@ -154,17 +162,19 @@ func (t *AttrAttrT) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	switch t := v.(type) {
+	switch tp := v.(type) {
 	case bool:
 		s = fmt.Sprintf("%t", v.(bool))
+		t.WasBoolean = true
 	case string:
 		s = v.(string)
+		t.WasBoolean = false
 	default:
-		log.Fatalf("Unknown type %v", t)
+		log.Fatalf("Unknown type %v", tp)
 	}
 
 	// log.Printf("%s -> %#v ", string(data), s)
-	t.Attr = s
+	t.Value = s
 
 	return nil
 }

@@ -41,6 +41,11 @@ func pull(dbPath string) {
 			panic(err)
 		}
 
+		if len(data.Stashes) == 0 {
+			log.Println("Got empty stashes in response")
+			break
+		}
+
 		err = appendToFile(data, dbPath)
 
 		log.Printf("Finished fetching '%s', counter is %d", url, counter)
@@ -48,11 +53,7 @@ func pull(dbPath string) {
 		counter++
 		nextChangeID = data.GetNextChangeId()
 
-		if len(data.Stashes) == 0 {
-			break
-		}
-
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second)
 	}
 }
 

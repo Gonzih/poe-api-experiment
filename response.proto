@@ -65,7 +65,7 @@ message Item {
   int64 w = 43;
   int64 x = 44;
   int64 y = 45;
-  string colour = 46;
+  BoolString colour = 46 [(gogoproto.customtype) = "BoolStringT"];
   int64 socket = 47;
   bool thRaceReward = 48;
 }
@@ -97,6 +97,11 @@ message PropertyValue {
 
 message Socket {
   int64 group = 1;
-  string attr = 2;
+  BoolString attr = 2 [(gogoproto.customtype) = "BoolStringT"];
   string sColour = 3;
+}
+
+message BoolString {
+  string value = 1;
+  bool wasBoolean = 2;
 }

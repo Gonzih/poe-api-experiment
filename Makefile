@@ -1,3 +1,6 @@
+clean:
+	rm -f response.pb.go
+
 deps:
 	go get github.com/gogo/protobuf/protoc-gen-gofast
 
