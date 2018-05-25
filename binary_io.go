@@ -16,6 +16,33 @@ type length int64
 
 var endianness = binary.LittleEndian
 
+func lastNextChangeID(dbPath string) string {
+	b, err := ioutil.ReadFile(dbPath)
+	if err != nil {
+		panic(fmt.Errorf("could not read %s: %v", dbPath, err))
+	}
+	data := &Response{}
+
+	for {
+		if len(b) == 0 {
+			return data.GetNextChangeId()
+		} else if len(b) < sizeOfLength {
+			panic(fmt.Errorf("remaining odd %d bytes, what to do?", len(b)))
+		}
+
+		var l length
+		if err := binary.Read(bytes.NewReader(b[:sizeOfLength]), endianness, &l); err != nil {
+			panic(fmt.Errorf("could not decode message length: %v", err))
+		}
+		b = b[sizeOfLength:]
+
+		if err := proto.Unmarshal(b[:l], data); err != nil {
+			panic(fmt.Errorf("could not read task: %v", err))
+		}
+		b = b[l:]
+	}
+}
+
 func list(dbPath string) error {
 	b, err := ioutil.ReadFile(dbPath)
 	if err != nil {

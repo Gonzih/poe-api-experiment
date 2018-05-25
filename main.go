@@ -21,7 +21,10 @@ func httpGetBody(url string) io.ReadCloser {
 }
 
 func pull(dbPath string) {
-	nextChangeID := ""
+	nextChangeID := lastNextChangeID(dbPath)
+
+	log.Printf("Restarting from ID %s", nextChangeID)
+
 	counter := 0
 
 	for {
@@ -31,7 +34,7 @@ func pull(dbPath string) {
 
 		body := httpGetBody(url)
 		defer body.Close()
-		unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: false}
+		unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: true}
 		err := unmarshaller.Unmarshal(body, data)
 
 		if err != nil {
