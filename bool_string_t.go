@@ -10,8 +10,7 @@ import (
 )
 
 type BoolStringT struct {
-	Value      string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-	WasBoolean bool   `protobuf:"bytes,2,opt,name=wasBoolean,proto3" json:"wasBoolean,omitempty"`
+	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
 func (m *BoolStringT) Reset()                    { *m = BoolStringT{} }
@@ -24,13 +23,6 @@ func (m *BoolStringT) GetValue() string {
 		return m.Value
 	}
 	return ""
-}
-
-func (m *BoolStringT) GetWasBoolean() bool {
-	if m != nil {
-		return m.WasBoolean
-	}
-	return false
 }
 
 func (m *BoolStringT) Marshal() (dAtA []byte, err error) {
@@ -165,10 +157,8 @@ func (t *BoolStringT) UnmarshalJSON(data []byte) error {
 	switch tp := v.(type) {
 	case bool:
 		s = fmt.Sprintf("%t", v.(bool))
-		t.WasBoolean = true
 	case string:
 		s = v.(string)
-		t.WasBoolean = false
 	default:
 		log.Fatalf("Unknown type %v", tp)
 	}

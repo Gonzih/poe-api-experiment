@@ -20,7 +20,7 @@ message Stash {
 }
 
 message Item {
-  bool  byssJewel = 1;
+  bool abyssJewel = 1;
   repeated Property  additionalProperties = 2;
   string  artFilename = 3;
   Category category = 4;
@@ -103,5 +103,4 @@ message Socket {
 
 message BoolString {
   string value = 1;
-  bool wasBoolean = 2;
 }

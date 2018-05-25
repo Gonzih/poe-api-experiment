@@ -15,7 +15,7 @@ func TestRealHttpRequest(t *testing.T) {
 		return
 	}
 
-	nextChangeID := ""
+	nextChangeID := "112870934-116856871-113462743-125603141-117476043"
 	counter := 0
 
 	for {

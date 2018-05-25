@@ -12,12 +12,10 @@ func TestValueBasicJSONUnmarashel(t *testing.T) {
 	val.UnmarshalJSON([]byte(`true`))
 
 	assert.Equal(t, "true", val.GetValue())
-	assert.True(t, val.GetWasBoolean())
 
 	val.UnmarshalJSON([]byte(`"S"`))
 
 	assert.Equal(t, "S", val.GetValue())
-	assert.False(t, val.GetWasBoolean())
 }
 
 func TestValueBasicSize(t *testing.T) {
@@ -62,5 +60,4 @@ func TestValueBasicProtoRemarshal(t *testing.T) {
 	assert.Nil(t, err)
 
 	assert.Equal(t, v, val2.GetValue())
-	assert.False(t, val2.GetWasBoolean())
 }
