@@ -22,5 +22,8 @@ pull: build
 list: build
 	./poe list
 
+lastid: build
+	./poe lastid
+
 test: proto
 	vgo test
