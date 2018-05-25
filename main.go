@@ -53,7 +53,7 @@ func pull(dbPath string) {
 		counter++
 		nextChangeID = data.GetNextChangeId()
 
-		time.Sleep(time.Second)
+		time.Sleep(time.Millisecond * 500)
 	}
 }
 
@@ -64,7 +64,10 @@ func main() {
 		pull("data.bin")
 
 	case "list":
-		list("data.bin")
+		walkResponses("data.bin", func(r *Response) error {
+			fmt.Printf("%s\n", r.GetNextChangeId())
+			return nil
+		})
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}
