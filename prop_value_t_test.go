@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestBasicJSONUnmarashel(t *testing.T) {
+func TestPropBasicJSONUnmarashel(t *testing.T) {
 	val := PropValueT{}
 
 	val.UnmarshalJSON([]byte(`["35%",1]`))
@@ -15,7 +15,7 @@ func TestBasicJSONUnmarashel(t *testing.T) {
 	assert.Equal(t, int64(1), val.GetValueType())
 }
 
-func TestBasicSize(t *testing.T) {
+func TestPropBasicSize(t *testing.T) {
 	v := `11\/315313`
 	vt := int64(1)
 	val := PropValueT{Value: v, ValueType: vt}
@@ -23,7 +23,7 @@ func TestBasicSize(t *testing.T) {
 	assert.Equal(t, 14, val.Size())
 }
 
-func TestBasicMarshalTo(t *testing.T) {
+func TestPropBasicMarshalTo(t *testing.T) {
 	v := `11\/315313oe`
 	vt := int64(1)
 	val := PropValueT{Value: v, ValueType: vt}
@@ -36,7 +36,7 @@ func TestBasicMarshalTo(t *testing.T) {
 	assert.Equal(t, 16, size)
 }
 
-func TestBasicProtoMarshal(t *testing.T) {
+func TestPropBasicProtoMarshal(t *testing.T) {
 	v := `11\/315313e`
 	vt := int64(1)
 	val := PropValueT{Value: v, ValueType: vt}
@@ -46,7 +46,7 @@ func TestBasicProtoMarshal(t *testing.T) {
 	assert.Len(t, data, 15)
 }
 
-func TestBasicProtoRemarshal(t *testing.T) {
+func TestPropBasicProtoRemarshal(t *testing.T) {
 	v := `11\/315313eooeo`
 	vt := int64(1)
 	val := PropValueT{Value: v, ValueType: vt}

@@ -48,11 +48,11 @@ func pull(dbPath string) {
 		counter++
 		nextChangeID = data.GetNextChangeId()
 
-		if len(nextChangeID) == 0 {
+		if len(data.Stashes) == 0 {
 			break
 		}
 
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 2)
 	}
 }
 
