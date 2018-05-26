@@ -73,6 +73,25 @@ func parsePriceInChaos(input string) float32 {
 	return float32(n)
 }
 
+func extractFeaturesFromAnItem(item *Item) (features []float32, ok bool) {
+	note := item.GetNote()
+
+	if item.GetFrameType() == 2 && strings.Contains(note, "chaos") && priceRegexp.MatchString(note) {
+		features = []float32{
+			float32(parsePriceInChaos(item.GetNote())),
+			float32(item.GetIlvl()),
+			float32(len(item.GetSockets())),
+			float32(numOfLinkedSockets(item.GetSockets())),
+		}
+
+		ok = true
+
+		return
+	}
+
+	return
+}
+
 func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Response) error {
 	var loopCounter int
 
@@ -81,19 +100,14 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 			if stash != nil {
 				for _, item := range stash.Items {
 					if item != nil {
-						note := item.GetNote()
-						if item.GetFrameType() == 2 && strings.Contains(note, "chaos") && priceRegexp.MatchString(note) {
+						features, ok := extractFeaturesFromAnItem(item)
+						if ok {
 							loopCounter++
 							if loopCounter > loopLimit {
 								return fmt.Errorf("Exiting from the loop, sorry")
 							}
 
-							*mlInput = append(*mlInput, []float32{
-								float32(parsePriceInChaos(item.GetNote())),
-								float32(item.GetIlvl()),
-								float32(len(item.GetSockets())),
-								float32(numOfLinkedSockets(item.GetSockets())),
-							})
+							*mlInput = append(*mlInput, features)
 						}
 					}
 				}
