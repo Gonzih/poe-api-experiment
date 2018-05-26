@@ -28,6 +28,9 @@ last-id: build
 generate-input: build
 	./poe generate-input
 
+generate-fields: build
+	./poe generate-fields
+
 ml-main: build
 	./poe ml-main
 
