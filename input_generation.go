@@ -106,7 +106,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 
 func generateMLInput(dbPath string) [][]float32 {
 	var mlInput [][]float32
-	loopLimit := 10000
+	loopLimit := 2000
 
 	walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput))
 
