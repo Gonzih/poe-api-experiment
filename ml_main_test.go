@@ -54,5 +54,6 @@ func TestBasicEvaluation(t *testing.T) {
 
 	result, err := evalFn([]float32{0, 4, 2, 1})
 	assert.Nil(t, err)
-	assert.Equal(t, float32(11.142875), result)
+	assert.True(t, float32(10) < result)
+	assert.True(t, float32(12) > result)
 }
