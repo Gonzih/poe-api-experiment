@@ -72,6 +72,8 @@ func main() {
 		log.Printf("Last ID: %s", lastNextChangeID("data.bin"))
 	case "generate-input":
 		generateMLInput("data.bin")
+	case "ml-main":
+		MLMain()
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}
