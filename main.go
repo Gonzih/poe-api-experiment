@@ -73,7 +73,7 @@ func main() {
 	case "generate-input":
 		generateMLInput("data.bin")
 	case "ml-main":
-		MLMain()
+		MLMain(generateMLInput("data.bin"))
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}

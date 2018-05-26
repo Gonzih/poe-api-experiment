@@ -28,5 +28,11 @@ last-id: build
 generate-input: build
 	./poe generate-input
 
+ml-main: build
+	./poe ml-main
+
 test: proto
 	vgo test
+
+test-short: proto
+	vgo test --short

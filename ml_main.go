@@ -10,70 +10,70 @@ import (
 	"gorgonia.org/tensor"
 )
 
-const (
-	vecSize = 1000000
-)
+func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
+	cols := make([][]float32, vecSize)
 
-// manually generate a fake dataset which is y=2x+random
-func xy(dt tensor.Dtype) (x tensor.Tensor, y tensor.Tensor) {
-	var xBack, yBack interface{}
-	switch dt {
-	case Float32:
-		xBack = tensor.Range(tensor.Float32, 1, vecSize+1).([]float32)
-		yBackC := tensor.Range(tensor.Float32, 1, vecSize+1).([]float32)
-
-		for i, v := range yBackC {
-			yBackC[i] = v*2 + rand.Float32()
+	for _, row := range input {
+		for i, v := range row {
+			cols[i] = append(cols[i], v)
 		}
-		yBack = yBackC
-	case Float64:
-		xBack = tensor.Range(tensor.Float64, 1, vecSize+1).([]float64)
-		yBackC := tensor.Range(tensor.Float64, 1, vecSize+1).([]float64)
-
-		for i, v := range yBackC {
-			yBackC[i] = v*2 + rand.Float64()
-		}
-		yBack = yBackC
 	}
 
-	x = tensor.New(tensor.WithBacking(xBack), tensor.WithShape(vecSize))
-	y = tensor.New(tensor.WithBacking(yBack), tensor.WithShape(vecSize))
+	// log.Printf("input: %v", input)
+	// log.Printf("cols: %v", cols)
+
+	for _, col := range cols {
+		ts = append(ts, tensor.New(tensor.WithBacking(col), tensor.WithShape(vecSize)))
+	}
+
 	return
 }
 
-func random(dt tensor.Dtype) interface{} {
-	rand.Seed(13370)
-	switch dt {
-	case tensor.Float32:
-		return rand.Float32()
-	case tensor.Float64:
-		return rand.Float64()
-	default:
-		panic("Unhandled dtype")
-	}
-}
+//The formula for a straight line is
 
-func linearRegression(Float tensor.Dtype) {
-	var xT, yT Value
-	xT, yT = xy(Float)
+// y = i0*a0 + i1*a1 + i2*a2 + c
+
+// We want to find an `m` and a `c` that fits the equation well. We'll do it in both float32 and float32 to showcase the extensibility of Gorgonia
+
+func linearRegression(input [][]float32) {
+	vecSize := len(input)
+	tensors := generateTensors(input, vecSize)
 
 	g := NewGraph()
-	x := NewVector(g, Float, WithShape(vecSize), WithName("x"), WithValue(xT))
-	y := NewVector(g, Float, WithShape(vecSize), WithName("y"), WithValue(yT))
-	m := NewScalar(g, Float, WithName("m"), WithValue(random(Float)))
-	c := NewScalar(g, Float, WithName("c"), WithValue(random(Float)))
 
-	pred := Must(Add(Must(Mul(x, m)), c))
+	y := NewVector(g, Float32, WithShape(vecSize), WithName("y"), WithValue(tensors[0]))
+
+	i1 := NewVector(g, Float32, WithShape(vecSize), WithName("i1"), WithValue(tensors[1]))
+	i2 := NewVector(g, Float32, WithShape(vecSize), WithName("i2"), WithValue(tensors[2]))
+	i3 := NewVector(g, Float32, WithShape(vecSize), WithName("i3"), WithValue(tensors[3]))
+
+	a1 := NewScalar(g, Float32, WithName("a1"), WithValue(rand.Float32()))
+	a2 := NewScalar(g, Float32, WithName("a2"), WithValue(rand.Float32()))
+	a3 := NewScalar(g, Float32, WithName("a3"), WithValue(rand.Float32()))
+
+	c := NewScalar(g, Float32, WithName("c"), WithValue(rand.Float32()))
+
+	pred := Must(Add(
+		Must(Add(
+			Must(Mul(i1, a1)),
+			Must(Mul(i2, a2)),
+		)),
+		Must(Add(
+			Must(Mul(i3, a3)),
+			c,
+		)),
+	))
+
 	se := Must(Square(Must(Sub(pred, y))))
 	cost := Must(Mean(se))
 
-	_, err := Grad(cost, m, c)
+	_, err := Grad(cost, a1, a2, a3, c)
 
 	// machine := NewLispMachine(g)  // you can use a LispMachine, but it'll be VERY slow.
-	machine := NewTapeMachine(g, BindDualValues(m, c))
+	machine := NewTapeMachine(g, BindDualValues(a1, a2, a3, c))
 
 	defer runtime.GC()
-	model := Nodes{m, c}
+	model := Nodes{a1, a2, a3, c}
 	solver := NewVanillaSolver(WithLearnRate(0.001), WithClip(5)) // good idea to clip
 
 	if CUDA {
@@ -93,19 +93,9 @@ func linearRegression(Float tensor.Dtype) {
 		machine.Reset() // Reset is necessary in a loop like this
 	}
 
-	fmt.Printf("%v: y = %3.3fx + %3.3f\n", Float, m.Value(), c.Value())
+	log.Printf("y = i0*%3.3f + i1*%3.3f + i2*%3.3f + %3.3f\n", a1.Value(), a2.Value(), a3.Value(), c.Value())
 }
 
-// Linear Regression Example
-//
-// The formula for a straight line is
-//		y = mx + c
-// We want to find an `m` and a `c` that fits the equation well. We'll do it in both float32 and float64 to showcase the extensibility of Gorgonia
-func MLMain() {
-	// Float32
-	linearRegression(Float32)
-
-	// Float64
-	linearRegression(Float64)
-
+func MLMain(input [][]float32) {
+	linearRegression(input)
 }

@@ -21,13 +21,13 @@ func TestMapFrameType(t *testing.T) {
 }
 
 func TestPriceParsing(t *testing.T) {
-	testPrices := []string{
-		"~price 3 chaos",
-		"~b/o 10 chaos",
-		"~price 1 alch each",
+	testPrices := map[string]float32{
+		"~price 3 chaos":      3,
+		"~b/o 10 chaos":       10,
+		"~price 1 chaos each": 1,
 	}
 
-	_ = testPrices
-
-	assert.Nil(t, nil)
+	for priceS, parsed := range testPrices {
+		assert.Equal(t, parsed, parsePriceInChaos(priceS))
+	}
 }

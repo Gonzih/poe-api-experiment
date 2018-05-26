@@ -1,7 +1,11 @@
 package main
 
 import (
+	fmt "fmt"
 	"log"
+	"regexp"
+	"strconv"
+	"strings"
 )
 
 func mapFrameType(t int64) string {
@@ -51,40 +55,60 @@ func numOfLinkedSockets(sockets []*Socket) int64 {
 	return maxGroup + 1
 }
 
-var propertyKeys = make(map[string]bool, 0)
+var priceRegexp = regexp.MustCompile(`\d+`)
 
-func generateMLInputFromResponse(r *Response) error {
-	for _, stash := range r.Stashes {
-		if stash != nil {
-			for _, item := range stash.Items {
-				if item != nil {
-					if len(item.GetNote()) > 0 && item.GetFrameType() == 2 {
-						// log.Printf("%v -> %s", mapFrameType(item.GetFrameType()), item.GetNote())
+func parsePriceInChaos(input string) float32 {
+	match := priceRegexp.FindString(input)
 
-						// log.Printf("Sockets: %d, groups: %d", len(item.GetSockets()), numOfLinkedSockets(item.GetSockets()))
+	if len(match) == 0 {
+		log.Fatalf(`Did not find any price string match in "%s"`, input)
+	}
 
-						for _, property := range item.GetProperties() {
-							if property != nil {
-								propertyKeys[property.GetName()] = true
-								// for _, value := range property.Values {
-								// 	log.Printf("%s -> %#v", property.GetName(), value)
-								// }
-							}
+	n, err := strconv.ParseFloat(match, 64)
+
+	if err != nil {
+		log.Fatalf(`Unable to parse "%s" in to float32`, match)
+	}
+
+	return float32(n)
+}
+
+func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Response) error {
+	var loopCounter int
+
+	return func(r *Response) error {
+		loopCounter++
+		for _, stash := range r.Stashes {
+			if stash != nil {
+				for _, item := range stash.Items {
+					if item != nil {
+						note := item.GetNote()
+						if item.GetFrameType() == 2 && strings.Contains(note, "chaos") && priceRegexp.MatchString(note) {
+							*mlInput = append(*mlInput, []float32{
+								float32(parsePriceInChaos(item.GetNote())),
+								float32(item.GetFrameType()),
+								float32(len(item.GetSockets())),
+								float32(numOfLinkedSockets(item.GetSockets())),
+							})
 						}
-
-						// log.Println("=================>")
 					}
 				}
 			}
 		}
-	}
 
-	return nil
+		if loopCounter > loopLimit {
+			return fmt.Errorf("Exiting from the loop, sorry")
+		}
+
+		return nil
+	}
 }
 
-func generateMLInput(dbPath string) {
-	walkResponses(dbPath, generateMLInputFromResponse)
-	for k := range propertyKeys {
-		log.Println(k)
-	}
+func generateMLInput(dbPath string) [][]float32 {
+	var mlInput [][]float32
+	loopLimit := 10000
+
+	walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput))
+
+	return mlInput
 }
