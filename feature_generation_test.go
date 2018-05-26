@@ -22,12 +22,22 @@ func TestMapFrameType(t *testing.T) {
 
 func TestPriceParsing(t *testing.T) {
 	testPrices := map[string]float32{
-		"~price 3 chaos":      3,
-		"~b/o 10 chaos":       10,
-		"~price 1 chaos each": 1,
+		"~price 3 chaos":      42,
+		"~b/o 10 chaos":       140,
+		"~price 1 chaos each": 14,
+		"~price 1 exa":        700.000,
+		"~b/o 1 chisel":       3.500,
+		"~b/o 1 chaos":        14.000,
+		"~b/o 1 fuse":         7.000,
+		"~b/o 1 alch":         4.000,
+		"~price 10 exa":       7000.000,
+		"~b/o 2 chrom":        2.000,
+		"~b/o 1 chrom":        1.000,
 	}
 
 	for priceS, parsed := range testPrices {
-		assert.Equal(t, parsed, parsePriceInChaos(priceS))
+		price, ok := parsePriceInChrom(priceS)
+		assert.True(t, ok)
+		assert.Equal(t, parsed, price)
 	}
 }
