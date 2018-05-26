@@ -90,7 +90,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 
 							*mlInput = append(*mlInput, []float32{
 								float32(parsePriceInChaos(item.GetNote())),
-								float32(item.GetFrameType()),
+								float32(item.GetIlvl()),
 								float32(len(item.GetSockets())),
 								float32(numOfLinkedSockets(item.GetSockets())),
 							})
@@ -106,7 +106,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 
 func generateMLInput(dbPath string) [][]float32 {
 	var mlInput [][]float32
-	loopLimit := 10000000
+	loopLimit := 500
 
 	log.Printf("Limiting to %d items", loopLimit)
 
