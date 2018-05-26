@@ -13,5 +13,7 @@ func TestPriceParsing(t *testing.T) {
 		"~price 1 alch each",
 	}
 
+	_ = testPrices
+
 	assert.Nil(t, nil)
 }
