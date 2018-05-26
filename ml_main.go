@@ -11,16 +11,13 @@ import (
 )
 
 func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
-	cols := make([][]float32, vecSize)
+	cols := make([][]float32, len(input[0]))
 
 	for _, row := range input {
 		for i, v := range row {
 			cols[i] = append(cols[i], v)
 		}
 	}
-
-	// log.Printf("input: %v", input)
-	// log.Printf("cols: %v", cols)
 
 	for _, col := range cols {
 		ts = append(ts, tensor.New(tensor.WithBacking(col), tensor.WithShape(vecSize)))
@@ -36,6 +33,7 @@ func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
 // We want to find an `m` and a `c` that fits the equation well. We'll do it in both float32 and float32 to showcase the extensibility of Gorgonia
 
 func linearRegression(input [][]float32) {
+	nInputs := len(input[0]) - 1
 	vecSize := len(input)
 	tensors := generateTensors(input, vecSize)
 
@@ -43,23 +41,29 @@ func linearRegression(input [][]float32) {
 
 	y := NewVector(g, Float32, WithShape(vecSize), WithName("y"), WithValue(tensors[0]))
 
-	i1 := NewVector(g, Float32, WithShape(vecSize), WithName("i1"), WithValue(tensors[1]))
-	i2 := NewVector(g, Float32, WithShape(vecSize), WithName("i2"), WithValue(tensors[2]))
-	i3 := NewVector(g, Float32, WithShape(vecSize), WithName("i3"), WithValue(tensors[3]))
+	log.Printf("Input len: %d, input[0] len: %d, tensors len: %d", len(input), len(input[0]), len(tensors))
 
-	a1 := NewScalar(g, Float32, WithName("a1"), WithValue(rand.Float32()))
-	a2 := NewScalar(g, Float32, WithName("a2"), WithValue(rand.Float32()))
-	a3 := NewScalar(g, Float32, WithName("a3"), WithValue(rand.Float32()))
+	tensors = tensors[1:]
+
+	iss := make([]*Node, nInputs)
+	for i := range iss {
+		iss[i] = NewVector(g, Float32, WithShape(vecSize), WithName(fmt.Sprintf("i%d", i)), WithValue(tensors[i]))
+	}
+
+	sss := make([]*Node, nInputs)
+	for i := range sss {
+		sss[i] = NewScalar(g, Float32, WithName(fmt.Sprintf("a%d", i)), WithValue(rand.Float32()))
+	}
 
 	c := NewScalar(g, Float32, WithName("c"), WithValue(rand.Float32()))
 
 	pred := Must(Add(
 		Must(Add(
-			Must(Mul(i1, a1)),
-			Must(Mul(i2, a2)),
+			Must(Mul(iss[0], sss[0])),
+			Must(Mul(iss[1], sss[1])),
 		)),
 		Must(Add(
-			Must(Mul(i3, a3)),
+			Must(Mul(iss[2], sss[2])),
 			c,
 		)),
 	))
@@ -67,13 +71,15 @@ func linearRegression(input [][]float32) {
 	se := Must(Square(Must(Sub(pred, y))))
 	cost := Must(Mean(se))
 
-	_, err := Grad(cost, a1, a2, a3, c)
+	allScalars := append(sss, c)
+
+	_, err := Grad(cost, allScalars...)
 
 	// machine := NewLispMachine(g)  // you can use a LispMachine, but it'll be VERY slow.
-	machine := NewTapeMachine(g, BindDualValues(a1, a2, a3, c))
+	machine := NewTapeMachine(g, BindDualValues(allScalars...))
 
 	defer runtime.GC()
-	model := Nodes{a1, a2, a3, c}
+	model := allScalars
 	solver := NewVanillaSolver(WithLearnRate(0.001), WithClip(5)) // good idea to clip
 
 	if CUDA {
@@ -93,7 +99,18 @@ func linearRegression(input [][]float32) {
 		machine.Reset() // Reset is necessary in a loop like this
 	}
 
-	log.Printf("y = i0*%3.3f + i1*%3.3f + i2*%3.3f + %3.3f\n", a1.Value(), a2.Value(), a3.Value(), c.Value())
+	var resValues []Value
+
+	for _, s := range allScalars {
+		resValues = append(resValues, s.Value())
+	}
+
+	log.Printf("y = i0*%3.3f + i1*%3.3f + i2*%3.3f + %3.3f\n",
+		resValues[0],
+		resValues[1],
+		resValues[2],
+		resValues[3],
+	)
 }
 
 func MLMain(input [][]float32) {

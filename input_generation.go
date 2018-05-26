@@ -108,6 +108,8 @@ func generateMLInput(dbPath string) [][]float32 {
 	var mlInput [][]float32
 	loopLimit := 2000
 
+	log.Printf("Limiting to %d responses", loopLimit)
+
 	walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput))
 
 	return mlInput
