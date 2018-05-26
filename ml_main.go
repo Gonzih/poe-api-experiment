@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"runtime"
+	"strings"
 
 	. "gorgonia.org/gorgonia"
 	"gorgonia.org/tensor"
@@ -116,12 +117,16 @@ func linearRegression(input [][]float32) error {
 		resValues = append(resValues, s.Value())
 	}
 
-	log.Printf("y = i0*%3.3f + i1*%3.3f + i2*%3.3f + %3.3f\n",
-		resValues[0],
-		resValues[1],
-		resValues[2],
-		resValues[3],
-	)
+	var output strings.Builder
+	output.WriteString("y = ")
+
+	for i := range sss {
+		output.WriteString(fmt.Sprintf("i%d*%3.3f + ", i, sss[i].Value()))
+	}
+
+	output.WriteString(fmt.Sprintf("%3.3f", c.Value()))
+
+	log.Println(output.String())
 
 	return nil
 }
