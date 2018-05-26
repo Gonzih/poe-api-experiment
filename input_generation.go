@@ -106,7 +106,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 
 func generateMLInput(dbPath string) [][]float32 {
 	var mlInput [][]float32
-	loopLimit := 500
+	loopLimit := 5000
 
 	log.Printf("Limiting to %d items", loopLimit)
 

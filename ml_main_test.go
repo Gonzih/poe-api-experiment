@@ -32,7 +32,27 @@ func TestBasicExecution(t *testing.T) {
 	}
 
 	for _, input := range inputs {
-		err := linearRegression(input)
+		_, err := linearRegression(input)
 		assert.Nil(t, err)
 	}
+}
+
+func TestBasicEvaluation(t *testing.T) {
+	input := [][]float32{
+		[]float32{16, 5, 3, 4},
+		[]float32{12, 3, 3, 5},
+		[]float32{15, 4, 3, 5},
+		[]float32{10, 2, 1, 5},
+		[]float32{20, 6, 1, 5},
+	}
+
+	evalFn, err := linearRegression(input)
+	assert.Nil(t, err)
+
+	_, err = evalFn([]float32{0, 4, 2})
+	assert.NotNil(t, err)
+
+	result, err := evalFn([]float32{0, 4, 2, 1})
+	assert.Nil(t, err)
+	assert.Equal(t, float32(11.142875), result)
 }

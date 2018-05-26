@@ -33,7 +33,7 @@ func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
 
 // We want to find an `m` and a `c` that fits the equation well. We'll do it in both float32 and float32 to showcase the extensibility of Gorgonia
 
-func linearRegression(input [][]float32) error {
+func linearRegression(input [][]float32) (func([]float32) (float32, error), error) {
 	nInputs := len(input[0]) - 1
 	vecSize := len(input)
 	tensors := generateTensors(input, vecSize)
@@ -128,7 +128,24 @@ func linearRegression(input [][]float32) error {
 
 	log.Println(output.String())
 
-	return nil
+	evaluationFn := func(in []float32) (out float32, err error) {
+		in = in[1:]
+
+		if len(in) != nInputs {
+			err = fmt.Errorf("Number of inputs is wrong %d != %d", len(in), nInputs)
+			return
+		}
+
+		for i := range sss {
+			out += in[i] * sss[i].Value().Data().(float32)
+		}
+
+		out += c.Value().Data().(float32)
+
+		return
+	}
+
+	return evaluationFn, nil
 }
 
 func MLMain(input [][]float32) {

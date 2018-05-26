@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"time"
@@ -58,6 +59,8 @@ func pull(dbPath string) {
 }
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
+
 	command := os.Args[1]
 	switch command {
 	case "pull":
@@ -73,7 +76,19 @@ func main() {
 	case "generate-input":
 		generateMLInput("data.bin")
 	case "ml-main":
-		MLMain(generateMLInput("data.bin"))
+		input := generateMLInput("data.bin")
+		evalFn, err := linearRegression(input)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		sample := input[rand.Intn(len(input))]
+		sampleResult, err := evalFn(sample)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Printf("For input %v y = %3.3f", sample, sampleResult)
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}
