@@ -68,8 +68,10 @@ func main() {
 			fmt.Printf("%s\n", r.GetNextChangeId())
 			return nil
 		})
-	case "lastid":
+	case "last-id":
 		log.Printf("Last ID: %s", lastNextChangeID("data.bin"))
+	case "generate-input":
+		generateMLInput("data.bin")
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}

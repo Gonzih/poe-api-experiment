@@ -66,7 +66,7 @@ func walkResponses(dbPath string, walkFn func(*Response) error) error {
 	}
 }
 
-func appendToFile(data *Response, dbPath string) error {
+func appendToFile(data proto.Message, dbPath string) error {
 	b, err := proto.Marshal(data)
 
 	if err != nil {

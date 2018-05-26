@@ -22,8 +22,11 @@ pull: build
 list: build
 	./poe list
 
-lastid: build
-	./poe lastid
+last-id: build
+	./poe last-id
+
+generate-input: build
+	./poe generate-input
 
 test: proto
 	vgo test

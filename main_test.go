@@ -44,22 +44,4 @@ func TestRealHttpRequest(t *testing.T) {
 			break
 		}
 	}
-
-	// for _, stash := range data.Stashes {
-	// 	if stash != nil {
-	// 		for _, item := range stash.Items {
-	// 			if item != nil {
-	// 				log.Println()
-	// 				for _, property := range item.GetAdditionalProperties() {
-	// 					if property != nil {
-	// 						for _, value := range property.Values {
-	// 							log.Printf("%s -> %#v", property.GetName(), value)
-	// 						}
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 }
