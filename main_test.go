@@ -23,11 +23,12 @@ func TestRealHttpRequest(t *testing.T) {
 
 		var data Response
 
-		body := httpGetBody(url)
+		body, err := httpGetBody(url)
+		assert.Nil(t, err)
+
 		defer body.Close()
 		unmarshaller := jsonpb.Unmarshaler{AllowUnknownFields: false}
-		err := unmarshaller.Unmarshal(body, &data)
-
+		err = unmarshaller.Unmarshal(body, &data)
 		assert.Nil(t, err)
 
 		if err == nil {
