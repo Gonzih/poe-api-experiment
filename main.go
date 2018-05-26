@@ -82,13 +82,21 @@ func main() {
 			log.Fatal(err)
 		}
 
-		sample := input[rand.Intn(len(input))]
-		sampleResult, err := evalFn(sample)
-		if err != nil {
-			log.Fatal(err)
-		}
+		c := 0
+		for {
+			c++
+			if c > 5 {
+				break
+			}
 
-		log.Printf("For input %v y = %3.3f", sample, sampleResult)
+			sample := input[rand.Intn(len(input))]
+			sampleResult, err := evalFn(sample)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			log.Printf("For input %v y = %3.3f", sample, sampleResult)
+		}
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}

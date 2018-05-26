@@ -57,7 +57,7 @@ func numOfLinkedSockets(sockets []*Socket) int64 {
 
 var priceRegexp = regexp.MustCompile(`\d+`)
 
-func parsePriceInChaos(input string) float32 {
+func parsePriceInChrom(input string) float32 {
 	match := priceRegexp.FindString(input)
 
 	if len(match) == 0 {
@@ -70,15 +70,22 @@ func parsePriceInChaos(input string) float32 {
 		log.Fatalf(`Unable to parse "%s" in to float32`, match)
 	}
 
-	return float32(n)
+	return float32(n * 14)
 }
 
 func extractFeaturesFromAnItem(item *Item) (features []float32, ok bool) {
 	note := item.GetNote()
 
-	if item.GetFrameType() == 2 && strings.Contains(note, "chaos") && priceRegexp.MatchString(note) {
+	if item.GetFrameType() == 2 && priceRegexp.MatchString(note) {
+		log.Println(note)
+	}
+
+	if item.GetFrameType() == 2 &&
+		strings.Contains(note, "chaos") &&
+		priceRegexp.MatchString(note) {
+
 		features = []float32{
-			float32(parsePriceInChaos(item.GetNote())),
+			float32(parsePriceInChrom(item.GetNote())),
 			float32(item.GetIlvl()),
 			float32(len(item.GetSockets())),
 			float32(numOfLinkedSockets(item.GetSockets())),
