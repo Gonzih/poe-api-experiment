@@ -35,6 +35,25 @@ func mapFrameType(t int64) string {
 	}
 }
 
+var priceTable = map[string]float32{
+	"chrom":   1,
+	"alt":     1.1,
+	"jew":     2,
+	"chance":  2.8,
+	"chisel":  3.5,
+	"alch":    4,
+	"fuse":    7,
+	"scour":   7.8,
+	"blessed": 18,
+	"chaos":   14,
+	"regret":  14,
+	"vaal":    14,
+	"gcp":     25, // gem cutter prism
+	"divine":  233,
+	"exa":     700,
+	// "et":      2800,
+}
+
 func numOfLinkedSockets(sockets []*Socket) int64 {
 	if len(sockets) == 0 {
 		return 0
@@ -57,46 +76,59 @@ func numOfLinkedSockets(sockets []*Socket) int64 {
 
 var priceRegexp = regexp.MustCompile(`\d+`)
 
-func parsePriceInChrom(input string) float32 {
+func parsePriceInChrom(input string) (float32, bool) {
+	if len(input) == 0 {
+		return 0, false
+	}
+
+	if !(strings.HasPrefix(input, "~price") || strings.HasPrefix(input, "~b/o")) {
+		// log.Printf(`Price note was not generated automatically, ignoring: "%s"`, input)
+		return 0, false
+	}
+
 	match := priceRegexp.FindString(input)
 
 	if len(match) == 0 {
-		log.Fatalf(`Did not find any price string match in "%s"`, input)
+		// log.Printf(`Did not find any price string match in "%s"`, input)
+		return 0, false
 	}
 
 	n, err := strconv.ParseFloat(match, 64)
 
 	if err != nil {
-		log.Fatalf(`Unable to parse "%s" in to float32`, match)
+		log.Printf(`Unable to parse "%s" in to float32`, match)
+		return 0, false
 	}
 
-	return float32(n * 14)
+	var rate float32
+
+	for k, p := range priceTable {
+		if strings.Contains(input, k) {
+			rate = p
+			break
+		}
+	}
+
+	return float32(n) * rate, true
 }
 
-func extractFeaturesFromAnItem(item *Item) (features []float32, ok bool) {
+func extractFeaturesFromAnItem(item *Item) ([]float32, bool) {
 	note := item.GetNote()
 
-	if item.GetFrameType() == 2 && priceRegexp.MatchString(note) {
-		log.Println(note)
-	}
+	price, ok := parsePriceInChrom(note)
 
-	if item.GetFrameType() == 2 &&
-		strings.Contains(note, "chaos") &&
-		priceRegexp.MatchString(note) {
+	if item.GetFrameType() == 2 && ok {
+		log.Printf(`"%s" -> %3.3f`, note, price)
 
-		features = []float32{
-			float32(parsePriceInChrom(item.GetNote())),
+		return []float32{
+			price,
 			float32(item.GetIlvl()),
 			float32(len(item.GetSockets())),
 			float32(numOfLinkedSockets(item.GetSockets())),
-		}
-
-		ok = true
-
-		return
+		}, true
 	}
 
-	return
+	return []float32{}, false
 }
 
 func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Response) error {
