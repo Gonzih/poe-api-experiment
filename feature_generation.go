@@ -118,7 +118,7 @@ func extractFeaturesFromAnItem(item *Item) ([]float32, bool) {
 	price, ok := parsePriceInChrom(note)
 
 	if item.GetFrameType() == 2 && ok {
-		log.Printf(`"%s": %3.3f`, note, price)
+		// log.Printf(`"%s": %3.3f`, note, price)
 
 		return []float32{
 			price,
