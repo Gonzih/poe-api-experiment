@@ -77,13 +77,17 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 	var loopCounter int
 
 	return func(r *Response) error {
-		loopCounter++
 		for _, stash := range r.Stashes {
 			if stash != nil {
 				for _, item := range stash.Items {
 					if item != nil {
 						note := item.GetNote()
 						if item.GetFrameType() == 2 && strings.Contains(note, "chaos") && priceRegexp.MatchString(note) {
+							loopCounter++
+							if loopCounter > loopLimit {
+								return fmt.Errorf("Exiting from the loop, sorry")
+							}
+
 							*mlInput = append(*mlInput, []float32{
 								float32(parsePriceInChaos(item.GetNote())),
 								float32(item.GetFrameType()),
@@ -96,19 +100,15 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 			}
 		}
 
-		if loopCounter > loopLimit {
-			return fmt.Errorf("Exiting from the loop, sorry")
-		}
-
 		return nil
 	}
 }
 
 func generateMLInput(dbPath string) [][]float32 {
 	var mlInput [][]float32
-	loopLimit := 2000
+	loopLimit := 10000000
 
-	log.Printf("Limiting to %d responses", loopLimit)
+	log.Printf("Limiting to %d items", loopLimit)
 
 	walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput))
 
