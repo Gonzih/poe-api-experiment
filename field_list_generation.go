@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
@@ -13,6 +14,22 @@ type fieldsForExtraction struct {
 	Properties   []string
 	ImplicitMods []string
 	ExplicitMods []string
+}
+
+func loadFieldsConfiguration() (*fieldsForExtraction, error) {
+	fields := &fieldsForExtraction{}
+
+	data, err := ioutil.ReadFile("fields.yaml")
+	if err != nil {
+		return fields, err
+	}
+
+	err = yaml.Unmarshal(data, &fields)
+	if err != nil {
+		return fields, err
+	}
+
+	return fields, nil
 }
 
 func saveFieldsOnDisk(fields *fieldsForExtraction) error {
@@ -34,7 +51,7 @@ func saveFieldsOnDisk(fields *fieldsForExtraction) error {
 	return nil
 }
 
-var numRegexp = regexp.MustCompile(`\d+`)
+var numRegexp = regexp.MustCompile(`\+?\d+`)
 
 func parseModString(input string) (float32, string) {
 	var n float32

@@ -112,26 +112,73 @@ func parsePriceInChrom(input string) (float32, bool) {
 	return float32(n) * rate, true
 }
 
-func extractFeaturesFromAnItem(item *Item) ([]float32, bool) {
+func extractMods(mods []string, names []string) ([]float32, bool) {
+	parsedMods := make(map[string]float32, len(mods))
+	out := make([]float32, len(names))
+
+	for _, mod := range mods {
+		value, name := parseModString(mod)
+		parsedMods[name] = value
+	}
+
+	for i, name := range names {
+		out[i] = parsedMods[name]
+	}
+
+	return out, true
+}
+
+func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtraction) ([]float32, bool) {
 	note := item.GetNote()
 
 	price, ok := parsePriceInChrom(note)
 
-	if item.GetFrameType() == 2 && ok {
+	cat := item.GetCategory()
+
+	if item.GetFrameType() == 2 && ok && cat != nil && len(cat.GetArmour()) > 0 {
 		// log.Printf(`"%s": %3.3f`, note, price)
 
-		return []float32{
+		var corrupted float32
+		if item.GetCorrupted() {
+			corrupted = 1
+		}
+
+		cat := item.GetCategory()
+
+		fts := []float32{
 			price,
 			float32(item.GetIlvl()),
 			float32(len(item.GetSockets())),
 			float32(numOfLinkedSockets(item.GetSockets())),
-		}, true
+			corrupted,
+			float32(len(cat.GetAccessories())),
+			float32(len(cat.GetArmour())),
+			float32(len(cat.GetJewels())),
+			float32(len(cat.GetWeapons())),
+			float32(len(cat.GetGems())),
+			float32(len(cat.GetFlasks())),
+			float32(len(cat.GetMaps())),
+			float32(len(cat.GetCurrency())),
+			float32(len(cat.GetCards())),
+		}
+
+		exMods, ok := extractMods(item.GetExplicitMods(), fieldsConfiguration.ExplicitMods)
+		if ok {
+			fts = append(fts, exMods...)
+		}
+
+		imMods, ok := extractMods(item.GetImplicitMods(), fieldsConfiguration.ImplicitMods)
+		if ok {
+			fts = append(fts, imMods...)
+		}
+
+		return fts, true
 	}
 
 	return []float32{}, false
 }
 
-func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Response) error {
+func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32, fieldsConfiguration *fieldsForExtraction) func(*Response) error {
 	var loopCounter int
 
 	return func(r *Response) error {
@@ -139,7 +186,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 			if stash != nil {
 				for _, item := range stash.Items {
 					if item != nil {
-						features, ok := extractFeaturesFromAnItem(item)
+						features, ok := extractFeaturesFromAnItem(item, fieldsConfiguration)
 						if ok {
 							loopCounter++
 							if loopCounter > loopLimit {
@@ -157,13 +204,18 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32) func(*Resp
 	}
 }
 
-func generateMLInput(dbPath string) ([][]float32, error) {
+func generateMLInput(dbPath string, loopLimit int) ([][]float32, error) {
 	var mlInput [][]float32
-	loopLimit := 5000
 
 	log.Printf("Limiting to %d items", loopLimit)
 
-	err := walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput))
+	fieldsConfiguration, err := loadFieldsConfiguration()
+
+	if err != nil {
+		return mlInput, err
+	}
+
+	err = walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput, fieldsConfiguration))
 
 	return mlInput, err
 }

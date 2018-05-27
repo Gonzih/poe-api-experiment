@@ -30,20 +30,21 @@ func main() {
 	case "last-id":
 		log.Printf("Last ID: %s", lastNextChangeID("data.bin"))
 	case "generate-input":
-		_, err := generateMLInput("data.bin")
+		_, err := generateMLInput("data.bin", 5000)
 		checkErr(err)
 	case "generate-fields":
 		checkErr(generateFields("data.bin"))
 	case "ml-main":
-		input, err := generateMLInput("data.bin")
-		checkErr(err)
+		input, err := generateMLInput("data.bin", 5000)
+		// checkErr(err)
 		evalFn, err := linearRegression(input)
 		checkErr(err)
 
 		c := 0
+		limit := 10
 		for {
 			c++
-			if c > 5 {
+			if c > limit {
 				break
 			}
 
@@ -51,7 +52,7 @@ func main() {
 			sampleResult, err := evalFn(sample)
 			checkErr(err)
 
-			log.Printf("For input %v y = %3.3f", sample, sampleResult)
+			log.Printf("For input %v y = %3.3f", sample[0], sampleResult)
 		}
 	default:
 		log.Fatalf("Uknown command %s", command)

@@ -147,7 +147,3 @@ func linearRegression(input [][]float32) (func([]float32) (float32, error), erro
 
 	return evaluationFn, nil
 }
-
-func MLMain(input [][]float32) {
-	linearRegression(input)
-}
