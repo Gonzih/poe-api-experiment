@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+type MLInput struct {
+	Fields [][]float32
+}
+
 func mapFrameType(t int64) string {
 	switch t {
 	case 0:
@@ -176,7 +180,7 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 	return []float32{}, false
 }
 
-func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32, fieldsConfiguration *fieldsForExtraction) func(*Response) error {
+func generateMLInputFromResponse(loopLimit int, mlInput *MLInput, fieldsConfiguration *fieldsForExtraction) func(*Response) error {
 	var loopCounter int
 
 	return func(r *Response) error {
@@ -191,7 +195,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32, fieldsConf
 								return fmt.Errorf("Exiting from the loop, sorry")
 							}
 
-							*mlInput = append(*mlInput, features)
+							mlInput.Fields = append(mlInput.Fields, features)
 						}
 					}
 				}
@@ -202,8 +206,9 @@ func generateMLInputFromResponse(loopLimit int, mlInput *[][]float32, fieldsConf
 	}
 }
 
-func generateMLInput(dbPath string, loopLimit int) ([][]float32, error) {
-	var mlInput [][]float32
+func generateMLInput(dbPath string, loopLimit int) (*MLInput, error) {
+	mlInput := &MLInput{}
+	var fields [][]float32
 
 	log.Printf("Limiting to %d items", loopLimit)
 
@@ -213,7 +218,9 @@ func generateMLInput(dbPath string, loopLimit int) ([][]float32, error) {
 		return mlInput, err
 	}
 
-	err = walkResponses(dbPath, generateMLInputFromResponse(loopLimit, &mlInput, fieldsConfiguration))
+	err = walkResponses(dbPath, generateMLInputFromResponse(loopLimit, mlInput, fieldsConfiguration))
+
+	mlInput.Fields = fields
 
 	return mlInput, err
 }

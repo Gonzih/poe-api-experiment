@@ -33,7 +33,7 @@ func TestBasicExecution(t *testing.T) {
 	}
 
 	for _, input := range inputs {
-		_, err := linearRegression(input)
+		_, err := linearRegression(&MLInput{Fields: input})
 		assert.Nil(t, err)
 	}
 }
@@ -47,7 +47,7 @@ func TestBasicEvaluation(t *testing.T) {
 		[]float32{20, 6, 1, 5},
 	}
 
-	evalFn, err := linearRegression(input)
+	evalFn, err := linearRegression(&MLInput{Fields: input})
 	assert.Nil(t, err)
 
 	_, err = evalFn([]float32{0, 4, 2})
@@ -65,7 +65,7 @@ func TestBasicDoubles(t *testing.T) {
 		input = append(input, []float32{i*2 + 1, i})
 	}
 
-	f, err := linearRegression(input)
+	f, err := linearRegression(&MLInput{Fields: input})
 	assert.Nil(t, err)
 
 	result, err := f([]float32{0, 6000})

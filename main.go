@@ -35,7 +35,7 @@ func main() {
 	case "generate-fields":
 		checkErr(generateFields("data.bin"))
 	case "ml-main":
-		input, err := generateMLInput("data.bin", 5000)
+		input, err := generateMLInput("data.bin", 1000000)
 		// checkErr(err)
 		evalFn, err := linearRegression(input)
 		checkErr(err)
@@ -48,7 +48,7 @@ func main() {
 				break
 			}
 
-			sample := input[rand.Intn(len(input))]
+			sample := input.Fields[rand.Intn(len(input.Fields))]
 			sampleResult, err := evalFn(sample)
 			checkErr(err)
 
