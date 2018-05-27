@@ -153,6 +153,32 @@ func parsePriceInChrom(input string) (float32, bool) {
 	return float32(n) * rate, true
 }
 
+func extractProperties(props []*Property, names []string) ([]float32, bool) {
+	parsedProps := make(map[string]float32, len(props))
+	out := make([]float32, len(names))
+	var v float32
+
+	for _, prop := range props {
+
+		// if len(prop.Values) > 1 {
+		// 	log.Println(len(prop.Values))
+		// 	log.Println(prop.GetName())
+		// 	log.Println(prop.Values)
+		// }
+		if len(prop.Values) == 1 {
+			v, _ = parseModString(prop.Values[0].Value)
+		}
+
+		parsedProps[prop.GetName()] = v
+	}
+
+	for i, name := range names {
+		out[i] = parsedProps[name]
+	}
+
+	return out, true
+}
+
 func extractMods(mods []string, names []string) ([]float32, bool) {
 	parsedMods := make(map[string]float32, len(mods))
 	out := make([]float32, len(names))
@@ -209,6 +235,11 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 		imMods, ok := extractMods(item.GetImplicitMods(), fieldsConfiguration.ImplicitMods)
 		if ok {
 			fts = append(fts, imMods...)
+		}
+
+		props, ok := extractProperties(item.GetProperties(), fieldsConfiguration.Properties)
+		if ok {
+			fts = append(fts, props...)
 		}
 
 		return fts, true

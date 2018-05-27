@@ -34,7 +34,7 @@ func main() {
 	case "generate-fields":
 		checkErr(generateFields("data/responses.bin"))
 	case "generate-input":
-		input, err := generateMLInput("data/responses.bin", 50000)
+		input, err := generateMLInput("data/responses.bin", 10000)
 		if err != nil {
 			if err == exitingTheLoopErr {
 				log.Printf(`Ignoring error "%s"`, err)
