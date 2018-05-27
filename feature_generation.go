@@ -1,15 +1,56 @@
 package main
 
 import (
+	"encoding/gob"
 	fmt "fmt"
 	"log"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
+const defaultMLInputFname = "data/ml-input.bin"
+
 type MLInput struct {
 	Fields [][]float32
+	FName  string
+}
+
+func (in *MLInput) Save() error {
+	var fname string
+
+	if len(in.FName) > 0 {
+		fname = in.FName
+	} else {
+		fname = defaultMLInputFname
+	}
+
+	f, err := os.OpenFile(fname, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		return fmt.Errorf("could not open %s: %v", fname, err)
+	}
+
+	enc := gob.NewEncoder(f)
+	return enc.Encode(in)
+}
+
+func (in *MLInput) Load() error {
+	var fname string
+
+	if len(in.FName) > 0 {
+		fname = in.FName
+	} else {
+		fname = defaultMLInputFname
+	}
+
+	f, err := os.OpenFile(fname, os.O_RDONLY, 0666)
+	if err != nil {
+		return fmt.Errorf("could not open %s: %v", fname, err)
+	}
+
+	dec := gob.NewDecoder(f)
+	return dec.Decode(in)
 }
 
 func mapFrameType(t int64) string {
@@ -192,7 +233,7 @@ func generateMLInputFromResponse(loopLimit int, mlInput *MLInput, fieldsConfigur
 						if ok {
 							loopCounter++
 							if loopCounter > loopLimit {
-								return fmt.Errorf("Exiting from the loop, sorry")
+								return exitingTheLoopErr
 							}
 
 							mlInput.Fields = append(mlInput.Fields, features)

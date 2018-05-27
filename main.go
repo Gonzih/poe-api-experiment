@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+var exitingTheLoopErr = fmt.Errorf("Exiting the loop, sorry!")
+
 func checkErr(err error) {
 	if err != nil {
 		log.Fatal(err)
@@ -20,23 +22,33 @@ func main() {
 	command := os.Args[1]
 	switch command {
 	case "pull":
-		checkErr(pull("data.bin"))
+		checkErr(pull("data/responses.bin"))
 
 	case "list":
-		checkErr(walkResponses("data.bin", func(r *Response) error {
+		checkErr(walkResponses("data/responses.bin", func(r *Response) error {
 			fmt.Printf("%s\n", r.GetNextChangeId())
 			return nil
 		}))
 	case "last-id":
-		log.Printf("Last ID: %s", lastNextChangeID("data.bin"))
+		log.Printf("Last ID: %s", lastNextChangeID("data/responses.bin"))
 	case "generate-input":
-		_, err := generateMLInput("data.bin", 5000)
+		input, err := generateMLInput("data/responses.bin", 50000)
+		if err != nil {
+			if err == exitingTheLoopErr {
+				log.Printf(`Ignoring error "%s"`, err)
+			} else {
+				log.Fatal(err)
+			}
+		}
+
+		err = input.Save()
 		checkErr(err)
 	case "generate-fields":
-		checkErr(generateFields("data.bin"))
+		checkErr(generateFields("data/responses.bin"))
 	case "ml-main":
-		input, err := generateMLInput("data.bin", 1000000)
-		// checkErr(err)
+		input := &MLInput{}
+		err := input.Load()
+		checkErr(err)
 		evalFn, err := linearRegression(input)
 		checkErr(err)
 

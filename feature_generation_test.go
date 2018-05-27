@@ -41,3 +41,30 @@ func TestPriceParsing(t *testing.T) {
 		assert.Equal(t, parsed, price)
 	}
 }
+
+func TestMLInputPersistancy(t *testing.T) {
+	fname := "/tmp/test-ml-input.bin"
+
+	in := &MLInput{Fields: [][]float32{
+		[]float32{1, 2, 3},
+		[]float32{4, 5, 6},
+		[]float32{7, 8, 9},
+	}, FName: fname}
+
+	err := in.Save()
+	assert.Nil(t, err)
+
+	in2 := &MLInput{FName: fname}
+
+	err = in2.Load()
+	assert.Nil(t, err)
+
+	assert.Equal(t, len(in.Fields), len(in2.Fields))
+	assert.Equal(t, len(in.Fields[0]), len(in2.Fields[0]))
+
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			assert.Equal(t, in.Fields[i][j], in2.Fields[i][j])
+		}
+	}
+}
