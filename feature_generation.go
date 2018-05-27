@@ -17,36 +17,32 @@ type MLInput struct {
 	FName  string
 }
 
-func (in *MLInput) Save() error {
-	var fname string
-
-	if len(in.FName) > 0 {
-		fname = in.FName
-	} else {
-		fname = defaultMLInputFname
+func (in *MLInput) initFName() {
+	if len(in.FName) == 0 {
+		in.FName = defaultMLInputFname
 	}
+}
 
-	f, err := os.OpenFile(fname, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+func (in *MLInput) Save() error {
+	in.initFName()
+
+	f, err := os.OpenFile(in.FName, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	defer f.Close()
 	if err != nil {
-		return fmt.Errorf("could not open %s: %v", fname, err)
+		return fmt.Errorf("could not open %s: %v", in.FName, err)
 	}
 
 	enc := gob.NewEncoder(f)
-	return enc.Encode(in)
+	return enc.Encode(*in)
 }
 
 func (in *MLInput) Load() error {
-	var fname string
+	in.initFName()
 
-	if len(in.FName) > 0 {
-		fname = in.FName
-	} else {
-		fname = defaultMLInputFname
-	}
-
-	f, err := os.OpenFile(fname, os.O_RDONLY, 0666)
+	f, err := os.OpenFile(in.FName, os.O_RDONLY, 0666)
+	defer f.Close()
 	if err != nil {
-		return fmt.Errorf("could not open %s: %v", fname, err)
+		return fmt.Errorf("could not open %s: %v", in.FName, err)
 	}
 
 	dec := gob.NewDecoder(f)
@@ -249,7 +245,6 @@ func generateMLInputFromResponse(loopLimit int, mlInput *MLInput, fieldsConfigur
 
 func generateMLInput(dbPath string, loopLimit int) (*MLInput, error) {
 	mlInput := &MLInput{}
-	var fields [][]float32
 
 	log.Printf("Limiting to %d items", loopLimit)
 
@@ -260,8 +255,6 @@ func generateMLInput(dbPath string, loopLimit int) (*MLInput, error) {
 	}
 
 	err = walkResponses(dbPath, generateMLInputFromResponse(loopLimit, mlInput, fieldsConfiguration))
-
-	mlInput.Fields = fields
 
 	return mlInput, err
 }

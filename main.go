@@ -31,6 +31,8 @@ func main() {
 		}))
 	case "last-id":
 		log.Printf("Last ID: %s", lastNextChangeID("data/responses.bin"))
+	case "generate-fields":
+		checkErr(generateFields("data/responses.bin"))
 	case "generate-input":
 		input, err := generateMLInput("data/responses.bin", 50000)
 		if err != nil {
@@ -43,8 +45,6 @@ func main() {
 
 		err = input.Save()
 		checkErr(err)
-	case "generate-fields":
-		checkErr(generateFields("data/responses.bin"))
 	case "ml-main":
 		input := &MLInput{}
 		err := input.Load()

@@ -28,6 +28,7 @@ func lastNextChangeID(dbPath string) string {
 
 func walkResponses(dbPath string, walkFn func(*Response) error) error {
 	f, err := os.Open(dbPath)
+	defer f.Close()
 	if err != nil {
 		return fmt.Errorf("could not read %s: %v", dbPath, err)
 	}
@@ -74,6 +75,7 @@ func appendToFile(data proto.Message, dbPath string) error {
 	}
 
 	f, err := os.OpenFile(dbPath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
+	defer f.Close()
 	if err != nil {
 		return fmt.Errorf("could not open %s: %v", dbPath, err)
 	}
