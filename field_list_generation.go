@@ -9,13 +9,13 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-type FieldsForExtraction struct {
+type fieldsForExtraction struct {
 	Properties   []string
 	ImplicitMods []string
 	ExplicitMods []string
 }
 
-func saveFieldsOnDisk(fields *FieldsForExtraction) error {
+func saveFieldsOnDisk(fields *fieldsForExtraction) error {
 	f, err := os.OpenFile("fields.yaml", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return err
@@ -40,17 +40,23 @@ func parseModString(input string) (float32, string) {
 	var n float32
 	nums := numRegexp.FindAllString(input, -1)
 
-	if len(nums) == 1 {
-		i, err := strconv.ParseInt(nums[0], 10, 64)
+	if len(nums) > 0 {
+		for _, num := range nums {
+			i, err := strconv.ParseInt(num, 10, 64)
 
-		if err != nil {
-			log.Fatalf(`Unable to parse "%s" in to float32`, nums[0])
+			if err != nil {
+				log.Fatalf(`Unable to parse "%s" in to float32`, num)
+			}
+
+			n += float32(i)
 		}
 
-		n = float32(i)
+		n /= float32(len(nums))
+	} else {
+		n = 1
 	}
 
-	return n, numRegexp.ReplaceAllString(input, "")
+	return n, numRegexp.ReplaceAllString(input, `\d+`)
 }
 
 func generateFields(dbPath string) error {
@@ -67,16 +73,30 @@ func generateFields(dbPath string) error {
 			if stash != nil {
 				for _, item := range stash.Items {
 					if item != nil {
-						// c++
-						// if c > 10000 {
-						// 	return fmt.Errorf("beep")
-						// }
+						if item.GetFrameType() == 2 {
 
-						if d := item.GetExplicitMods(); len(d) > 0 {
-							log.Println(d)
-						}
-						for _, field := range item.GetProperties() {
-							props[field.GetName()] = true
+							// c++
+							// if c > 10000 {
+							// 	return fmt.Errorf("beep")
+							// }
+
+							if mods := item.GetExplicitMods(); len(mods) > 0 {
+								for _, mod := range mods {
+									_, name := parseModString(mod)
+									exMods[name] = true
+								}
+							}
+
+							if mods := item.GetImplicitMods(); len(mods) > 0 {
+								for _, mod := range mods {
+									_, name := parseModString(mod)
+									imMods[name] = true
+								}
+							}
+
+							for _, field := range item.GetProperties() {
+								props[field.GetName()] = true
+							}
 						}
 					}
 				}
@@ -90,12 +110,22 @@ func generateFields(dbPath string) error {
 		return err
 	}
 
-	fields := &FieldsForExtraction{
-		Properties: make([]string, 0),
+	fields := &fieldsForExtraction{
+		Properties:   make([]string, 0),
+		ExplicitMods: make([]string, 0),
+		ImplicitMods: make([]string, 0),
 	}
 
 	for k := range props {
 		fields.Properties = append(fields.Properties, k)
+	}
+
+	for k := range exMods {
+		fields.ExplicitMods = append(fields.ExplicitMods, k)
+	}
+
+	for k := range imMods {
+		fields.ImplicitMods = append(fields.ImplicitMods, k)
 	}
 
 	err = saveFieldsOnDisk(fields)
