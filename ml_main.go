@@ -5,7 +5,6 @@ import (
 	"log"
 	"math/rand"
 	"runtime"
-	"strings"
 
 	. "gorgonia.org/gorgonia"
 	"gorgonia.org/tensor"
@@ -98,7 +97,7 @@ func linearRegression(input [][]float32) (func([]float32) (float32, error), erro
 		runtime.LockOSThread()
 		defer runtime.UnlockOSThread()
 	}
-	for i := 0; i < 500; i++ {
+	for i := 0; i < 1000; i++ {
 		if err = machine.RunAll(); err != nil {
 			fmt.Printf("Error during iteration: %v: %v\n", i, err)
 			break
@@ -117,16 +116,16 @@ func linearRegression(input [][]float32) (func([]float32) (float32, error), erro
 		resValues = append(resValues, s.Value())
 	}
 
-	var output strings.Builder
-	output.WriteString("y = ")
+	// var output strings.Builder
+	// output.WriteString("y = ")
 
-	for i := range sss {
-		output.WriteString(fmt.Sprintf("i%d*%3.3f + ", i, sss[i].Value()))
-	}
+	// for i := range sss {
+	// 	output.WriteString(fmt.Sprintf("i%d*%3.3f + ", i, sss[i].Value()))
+	// }
 
-	output.WriteString(fmt.Sprintf("%3.3f", c.Value()))
+	// output.WriteString(fmt.Sprintf("%3.3f", c.Value()))
 
-	log.Println(output.String())
+	// log.Println(output.String())
 
 	evaluationFn := func(in []float32) (out float32, err error) {
 		in = in[1:]
