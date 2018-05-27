@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -54,6 +55,22 @@ func TestBasicEvaluation(t *testing.T) {
 
 	result, err := evalFn([]float32{0, 4, 2, 1})
 	assert.Nil(t, err)
-	assert.True(t, float32(10) < result)
-	assert.True(t, float32(12) > result)
+	assert.InEpsilon(t, float32(11), result, 0.1)
+}
+
+func TestBasicDoubles(t *testing.T) {
+	var input [][]float32
+
+	for i := float32(0); i < 100000; i++ {
+		input = append(input, []float32{i*2 + 1, i})
+	}
+
+	f, err := linearRegression(input)
+	assert.Nil(t, err)
+
+	result, err := f([]float32{0, 6000})
+	assert.Nil(t, err)
+
+	log.Printf("Result %3.3f", result)
+	assert.InEpsilon(t, float32(12001), result, 0.001)
 }
