@@ -1,0 +1,239 @@
+properties:
+- Projectile, Trap, Spell, Duration, Lightning
+- Bow, Attack, Support, Duration
+- Souls Per Use
+- Spell, AoE, Duration, Cold
+- Dagger
+- Spell, AoE, Duration, Chaos, Channelling
+- Vaal, Spell, AoE, Fire
+- Spell, Minion
+- Mine, Spell, AoE, Duration, Movement
+- Two Handed Axe
+- Curse, Spell, AoE, Duration, Lightning
+- Vaal, Attack, Melee, Duration, AoE, Cold
+- Totem, Attack, Duration, Melee
+- Attack, AoE, Melee
+- Monster Pack Size
+- Support, Channelling, Spell
+- Support, Duration
+- Two Handed Mace
+- Aura, Spell, AoE, Fire
+- Bow
+- Projectile, Spell, Duration, Chaos
+- Attack, AoE, Duration, Cold, Bow
+- Attack, Fire, Bow
+- Can only be used in Areas with Monster Level %0 or below
+- Chaos, Support
+- Spell, AoE, Lightning
+- Attack, Melee, Bow
+- Totem, Attack, Duration, Bow
+- Projectile, Vaal, Attack
+- Attack, Movement, Melee
+- Lightning, Spell, Duration, AoE, Chaining
+- Spell, AoE, Fire, Channelling
+- Attack, AoE, Projectile
+- Projectile, Attack
+- Can only be used in Areas with Monster Level between %0 and %1
+- Cooldown Time
+- Curse, Trigger, Support
+- Level
+- Curse, Spell, AoE, Duration, Chaos
+- Projectile, Attack, Melee, Cold
+- Vaal, Spell, AoE, Cold
+- Trap, Support
+- Aura, Spell, AoE, Lightning
+- Fire, Attack, AoE, Duration, Bow
+- Minion, Spell, Golem
+- Attack, Minion, Duration, Bow
+- Totem, Spell, Duration, Fire
+- Fire, Minion, Spell, Golem
+- Lightning, Support, Channelling
+- Critical Strike Chance
+- Currently has %0 Charges
+- Spell, Chaining, Lightning
+- Projectile, Totem, Spell, Duration, Fire
+- Support, Melee, Attack
+- Spell, Fire, Duration, Channelling
+- Imprinted
+- Spell, Duration
+- Attack, Minion, Duration, Movement, Bow
+- Can Store %0 Uses
+- Mine, Spell, AoE, Duration, Cold
+- Fishing Rod
+- Chaos, Minion, Spell, Golem
+- Attack, AoE, Lightning, Bow
+- Minion, Spell, Duration
+- Curse, Spell, AoE, Duration
+- Melee, Support, Attack
+- Map Tier
+- Projectile, Attack, Support
+- Spell, Chaos, AoE, Channelling, Duration
+- Can only be used in Areas with Monster Level %0 or above
+- Lasts %0 Seconds
+- One Handed Axe
+- Can Store %0 Use
+- Spell, Movement, Duration, Fire
+- Vaal, Attack, AoE, Duration, Melee
+- Vaal, Attack, AoE, Fire, Bow
+- Mana Cost
+- Lightning, Support
+- Spell, AoE, Duration, Chaos
+- Spell, AoE, Cold, Duration
+- Group
+- Cast Time
+- Aura, Spell, AoE, Cold
+- Attack, Melee, Support
+- Projectile, Attack, Melee, Lightning, Cold, Fire, AoE, Chaining
+- Movement, AoE, Channelling, Attack, Lightning, Melee
+- Claw
+- Two Handed Sword
+- Item Rarity
+- Spell, Minion, Duration, Fire
+- Vaal, Spell
+- Currently has %0 of %1 Charge
+- Weapon Range
+- Chaos Damage
+- Spell, AoE, Fire, Herald, Duration
+- Projectile, Vaal, Spell, AoE, Fire
+- Curse, Spell, AoE, Duration, Cold
+- Spell
+- Trigger, Attack, Melee
+- Attack, Duration, Melee, Chaos
+- One Handed Sword
+- Attack, Melee, Cold
+- Attack, Support
+- Aura, Spell, AoE
+- Support, Curse, Aura
+- Movement, Support, Minion
+- Projectile, Trap, Vaal, Spell, Duration, Lightning
+- Projectile, Spell, AoE, Fire, Duration
+- Mana Reserved
+- Trap, Spell, Duration, AoE, Fire
+- AoE, Spell, Support
+- Attacks per Second
+- Attack, AoE, Bow
+- Chance to Block
+- Support, Trap, Duration
+- Attack, Melee, Movement
+- Attack, AoE, Duration, Melee
+- Fire, Attack, AoE, Melee
+- Genus
+- Attack, Melee
+- Radius
+- Vaal, Attack, Melee, Duration
+- Currently has %0 of %1 Charges
+- Support, Trap, Mine
+- Spell, AoE, Fire
+- Totem, Spell, Duration
+- Support, Spell, Duration
+- Movement, Spell, AoE, Fire
+- Projectile, Spell, Cold
+- Cold, Fire, Lightning, Support, AoE
+- Support, Projectile
+- Projectile, Spell, Duration, AoE, Cold
+- Support, Minion
+- Spell, AoE, Duration
+- Trigger, Attack, AoE, Melee
+- Support, Melee, Attack, Spell, Trigger
+- Spell, AoE, Duration, Movement, Lightning
+- Projectile, Spell, AoE, Fire, Chaining
+- Spell, Duration, Cold
+- Attack, Melee, AoE, Duration, Lightning
+- Spell, Duration, Movement
+- Totem, Spell, AoE, Duration
+- Attack, Minion, Duration, Melee
+- Projectile, Attack, Melee, Lightning
+- AoE, Mine, Spell, Fire, Duration
+- Projectile, Support
+- Attack, AoE, Duration, Chaos, Bow
+- Cold, Minion, Spell, Golem
+- Mana Multiplier
+- Spell, AoE, Cold, Herald
+- Item Quantity
+- Attack, Support, Melee
+- Spell, AoE, Duration, Lightning
+- Stack Size
+- Projectile, Spell
+- Attack, AoE, Melee, Fire
+- Projectile, Spell, AoE, Lightning
+- Support
+- Abyss
+- Attack, AoE, Cold, Melee
+- Vaal, Spell, AoE, Duration, Fire
+- Bow, Projectile, Support, Totem, Attack, Duration
+- Warcry, AoE, Duration
+- Vaal, Attack, AoE, Melee
+- Projectile, Spell, AoE, Fire
+- Aura, Vaal, Spell, AoE, Duration
+- Projectile, Spell, Duration, Lightning
+- Trap, Spell, Duration
+- Energy Shield
+- Elemental Damage
+- Cold, Support
+- Vaal, Spell, AoE, Duration, Lightning
+- Attack, Melee, Fire, Cold, Lightning, Bow
+- Quality
+- Mana Reservation Override
+- Spell, AoE, Cold
+- Fire, Attack, AoE, Bow
+- Support, Spell, Trigger
+- Curse, Spell, AoE, Duration, Fire
+- Support, Melee, Attack, AoE
+- Vaal, Spell, Minion, Duration
+- Support, Mine
+- Totem, Attack, Duration, AoE, Melee
+- Limited to
+- Support, Chaining, Projectile
+- Support, Mine, Duration
+- Spell, Support
+- Projectile, AoE, Spell, Lightning, Channelling
+- Minion, Spell, AoE, Chaining, Chaos
+- Staff
+- Support, Totem, Duration
+- Fire, Support
+- Vaal, Spell, Chaining, Lightning
+- Support, Trap
+- Projectile, Attack, AoE, Melee, Fire
+- Totem, Spell, Duration, AoE
+- Spell, Lightning, Chaining, Duration
+- Vaal, Spell, AoE, Duration, Cold
+- Support, Aura
+- Attack, AoE, Channelling, Melee
+- Evasion Rating
+- Spell, AoE, Duration, Lightning, Herald
+- Totem, Aura, Spell, AoE, Duration
+- Spell, Minion, Duration
+- Vaal, Attack, Projectile
+- Spell, AoE, Fire, Cold, Lightning
+- Recovers %0 Life over %1 Seconds
+- Armour
+- Attack, Bow
+- Projectile, Spell, Fire, Channelling
+- Cold, Fire, Support
+- Support, Spell
+- Spell, AoE
+- Spell, AoE, Lightning, Channelling
+- Fire, Support, AoE
+- Physical Damage
+- Consumes %0 of %1 Charges on use
+- Lightning, Minion, Spell, Golem
+- Recovers %0 Mana over %1 Seconds
+- Support, AoE
+- Family
+- One Handed Mace
+- Attack, Projectile
+- Lightning, Attack, AoE, Bow
+- Attack, Duration, Melee, Bow
+- Vaal, Attack, Melee, Duration, Lightning
+- Trap, Spell, AoE, Cold, Duration
+- Net Tier
+- Attack, AoE, Movement, Melee
+- Effectiveness of Added Damage
+- Wand
+- Spell, AoE, Duration, Fire
+- Vaal, Attack, AoE, Duration, Bow
+- Vaal, Spell, Duration
+- Warcry, AoE, Duration, Chaos
+- Projectile, Vaal, Spell, Duration, Lightning
+- Duration, Minion, Spell
+- Lightning, Support, Duration
