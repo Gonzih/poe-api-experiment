@@ -133,9 +133,7 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 
 	price, ok := parsePriceInChrom(note)
 
-	cat := item.GetCategory()
-
-	if item.GetFrameType() == 2 && ok && cat != nil && len(cat.GetArmour()) > 0 {
+	if item.GetFrameType() == 2 && ok {
 		// log.Printf(`"%s": %3.3f`, note, price)
 
 		var corrupted float32

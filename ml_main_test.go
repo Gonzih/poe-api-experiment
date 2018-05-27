@@ -72,5 +72,5 @@ func TestBasicDoubles(t *testing.T) {
 	assert.Nil(t, err)
 
 	log.Printf("Result %3.3f", result)
-	assert.InEpsilon(t, float32(12001), result, 0.001)
+	assert.InEpsilon(t, float32(12001), result, 0.01)
 }
