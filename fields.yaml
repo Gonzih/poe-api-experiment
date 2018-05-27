@@ -1,239 +1,1086 @@
 properties:
-- Projectile, Trap, Spell, Duration, Lightning
-- Bow, Attack, Support, Duration
-- Souls Per Use
-- Spell, AoE, Duration, Cold
-- Dagger
-- Spell, AoE, Duration, Chaos, Channelling
-- Vaal, Spell, AoE, Fire
-- Spell, Minion
-- Mine, Spell, AoE, Duration, Movement
-- Two Handed Axe
-- Curse, Spell, AoE, Duration, Lightning
-- Vaal, Attack, Melee, Duration, AoE, Cold
-- Totem, Attack, Duration, Melee
-- Attack, AoE, Melee
-- Monster Pack Size
-- Support, Channelling, Spell
-- Support, Duration
-- Two Handed Mace
-- Aura, Spell, AoE, Fire
-- Bow
-- Projectile, Spell, Duration, Chaos
-- Attack, AoE, Duration, Cold, Bow
-- Attack, Fire, Bow
-- Can only be used in Areas with Monster Level %0 or below
-- Chaos, Support
-- Spell, AoE, Lightning
-- Attack, Melee, Bow
-- Totem, Attack, Duration, Bow
-- Projectile, Vaal, Attack
-- Attack, Movement, Melee
-- Lightning, Spell, Duration, AoE, Chaining
-- Spell, AoE, Fire, Channelling
-- Attack, AoE, Projectile
-- Projectile, Attack
-- Can only be used in Areas with Monster Level between %0 and %1
-- Cooldown Time
-- Curse, Trigger, Support
-- Level
-- Curse, Spell, AoE, Duration, Chaos
-- Projectile, Attack, Melee, Cold
-- Vaal, Spell, AoE, Cold
-- Trap, Support
-- Aura, Spell, AoE, Lightning
-- Fire, Attack, AoE, Duration, Bow
-- Minion, Spell, Golem
-- Attack, Minion, Duration, Bow
-- Totem, Spell, Duration, Fire
-- Fire, Minion, Spell, Golem
-- Lightning, Support, Channelling
-- Critical Strike Chance
-- Currently has %0 Charges
-- Spell, Chaining, Lightning
-- Projectile, Totem, Spell, Duration, Fire
-- Support, Melee, Attack
-- Spell, Fire, Duration, Channelling
-- Imprinted
-- Spell, Duration
-- Attack, Minion, Duration, Movement, Bow
-- Can Store %0 Uses
-- Mine, Spell, AoE, Duration, Cold
-- Fishing Rod
-- Chaos, Minion, Spell, Golem
-- Attack, AoE, Lightning, Bow
-- Minion, Spell, Duration
-- Curse, Spell, AoE, Duration
-- Melee, Support, Attack
-- Map Tier
-- Projectile, Attack, Support
-- Spell, Chaos, AoE, Channelling, Duration
-- Can only be used in Areas with Monster Level %0 or above
-- Lasts %0 Seconds
-- One Handed Axe
-- Can Store %0 Use
-- Spell, Movement, Duration, Fire
-- Vaal, Attack, AoE, Duration, Melee
-- Vaal, Attack, AoE, Fire, Bow
-- Mana Cost
-- Lightning, Support
-- Spell, AoE, Duration, Chaos
-- Spell, AoE, Cold, Duration
-- Group
-- Cast Time
-- Aura, Spell, AoE, Cold
-- Attack, Melee, Support
-- Projectile, Attack, Melee, Lightning, Cold, Fire, AoE, Chaining
-- Movement, AoE, Channelling, Attack, Lightning, Melee
-- Claw
-- Two Handed Sword
-- Item Rarity
-- Spell, Minion, Duration, Fire
-- Vaal, Spell
-- Currently has %0 of %1 Charge
-- Weapon Range
-- Chaos Damage
-- Spell, AoE, Fire, Herald, Duration
-- Projectile, Vaal, Spell, AoE, Fire
-- Curse, Spell, AoE, Duration, Cold
-- Spell
-- Trigger, Attack, Melee
-- Attack, Duration, Melee, Chaos
-- One Handed Sword
-- Attack, Melee, Cold
-- Attack, Support
-- Aura, Spell, AoE
-- Support, Curse, Aura
-- Movement, Support, Minion
-- Projectile, Trap, Vaal, Spell, Duration, Lightning
-- Projectile, Spell, AoE, Fire, Duration
-- Mana Reserved
-- Trap, Spell, Duration, AoE, Fire
-- AoE, Spell, Support
-- Attacks per Second
-- Attack, AoE, Bow
-- Chance to Block
-- Support, Trap, Duration
-- Attack, Melee, Movement
-- Attack, AoE, Duration, Melee
-- Fire, Attack, AoE, Melee
-- Genus
-- Attack, Melee
-- Radius
-- Vaal, Attack, Melee, Duration
-- Currently has %0 of %1 Charges
-- Support, Trap, Mine
-- Spell, AoE, Fire
-- Totem, Spell, Duration
-- Support, Spell, Duration
-- Movement, Spell, AoE, Fire
-- Projectile, Spell, Cold
-- Cold, Fire, Lightning, Support, AoE
-- Support, Projectile
-- Projectile, Spell, Duration, AoE, Cold
-- Support, Minion
-- Spell, AoE, Duration
-- Trigger, Attack, AoE, Melee
-- Support, Melee, Attack, Spell, Trigger
-- Spell, AoE, Duration, Movement, Lightning
-- Projectile, Spell, AoE, Fire, Chaining
-- Spell, Duration, Cold
-- Attack, Melee, AoE, Duration, Lightning
-- Spell, Duration, Movement
-- Totem, Spell, AoE, Duration
-- Attack, Minion, Duration, Melee
-- Projectile, Attack, Melee, Lightning
-- AoE, Mine, Spell, Fire, Duration
-- Projectile, Support
-- Attack, AoE, Duration, Chaos, Bow
-- Cold, Minion, Spell, Golem
-- Mana Multiplier
-- Spell, AoE, Cold, Herald
 - Item Quantity
-- Attack, Support, Melee
-- Spell, AoE, Duration, Lightning
-- Stack Size
-- Projectile, Spell
-- Attack, AoE, Melee, Fire
-- Projectile, Spell, AoE, Lightning
-- Support
+- One Handed Sword
+- One Handed Axe
+- Two Handed Mace
 - Abyss
-- Attack, AoE, Cold, Melee
-- Vaal, Spell, AoE, Duration, Fire
-- Bow, Projectile, Support, Totem, Attack, Duration
-- Warcry, AoE, Duration
-- Vaal, Attack, AoE, Melee
-- Projectile, Spell, AoE, Fire
-- Aura, Vaal, Spell, AoE, Duration
-- Projectile, Spell, Duration, Lightning
-- Trap, Spell, Duration
-- Energy Shield
-- Elemental Damage
-- Cold, Support
-- Vaal, Spell, AoE, Duration, Lightning
-- Attack, Melee, Fire, Cold, Lightning, Bow
-- Quality
-- Mana Reservation Override
-- Spell, AoE, Cold
-- Fire, Attack, AoE, Bow
-- Support, Spell, Trigger
-- Curse, Spell, AoE, Duration, Fire
-- Support, Melee, Attack, AoE
-- Vaal, Spell, Minion, Duration
-- Support, Mine
-- Totem, Attack, Duration, AoE, Melee
-- Limited to
-- Support, Chaining, Projectile
-- Support, Mine, Duration
-- Spell, Support
-- Projectile, AoE, Spell, Lightning, Channelling
-- Minion, Spell, AoE, Chaining, Chaos
-- Staff
-- Support, Totem, Duration
-- Fire, Support
-- Vaal, Spell, Chaining, Lightning
-- Support, Trap
-- Projectile, Attack, AoE, Melee, Fire
-- Totem, Spell, Duration, AoE
-- Spell, Lightning, Chaining, Duration
-- Vaal, Spell, AoE, Duration, Cold
-- Support, Aura
-- Attack, AoE, Channelling, Melee
+- Genus
+- Group
 - Evasion Rating
-- Spell, AoE, Duration, Lightning, Herald
-- Totem, Aura, Spell, AoE, Duration
-- Spell, Minion, Duration
-- Vaal, Attack, Projectile
-- Spell, AoE, Fire, Cold, Lightning
-- Recovers %0 Life over %1 Seconds
-- Armour
-- Attack, Bow
-- Projectile, Spell, Fire, Channelling
-- Cold, Fire, Support
-- Support, Spell
-- Spell, AoE
-- Spell, AoE, Lightning, Channelling
-- Fire, Support, AoE
+- Bow
+- Item Rarity
+- Map Tier
+- Monster Pack Size
+- Chaos Damage
+- Two Handed Sword
 - Physical Damage
-- Consumes %0 of %1 Charges on use
-- Lightning, Minion, Spell, Golem
-- Recovers %0 Mana over %1 Seconds
-- Support, AoE
-- Family
+- Elemental Damage
+- Dagger
+- Energy Shield
+- Claw
+- Weapon Range
 - One Handed Mace
-- Attack, Projectile
-- Lightning, Attack, AoE, Bow
-- Attack, Duration, Melee, Bow
-- Vaal, Attack, Melee, Duration, Lightning
-- Trap, Spell, AoE, Cold, Duration
-- Net Tier
-- Attack, AoE, Movement, Melee
-- Effectiveness of Added Damage
+- Fishing Rod
+- Armour
+- Chance to Block
+- Critical Strike Chance
+- Family
+- Attacks per Second
+- Quality
+- Two Handed Axe
 - Wand
-- Spell, AoE, Duration, Fire
-- Vaal, Attack, AoE, Duration, Bow
-- Vaal, Spell, Duration
-- Warcry, AoE, Duration, Chaos
-- Projectile, Vaal, Spell, Duration, Lightning
-- Duration, Minion, Spell
-- Lightning, Support, Duration
+- Staff
+
+implicitmods:
+- +\d+ Life gained for each Enemy hit by Attacks
+- \d+% increased Damage while Dead
+- Adds \d+ to \d+ Chaos Damage
+- \d+% increased Global Critical Strike Chance
+- +\d+% to all Elemental Resistances
+- \d+.\d+ Life Regenerated per second
+- \d+% increased Chaos Damage for each Equipped Corrupted Item
+- \d+% increased Lightning Damage
+- Cannot be Knocked Back
+- Grants Level \d+ Temporal Chains Skill
+- \d+% increased Vaal Skill Damage
+- Enemies can have \d+ additional Curse
+- Grants Level \d+ Frostbite Skill
+- \d+% increased Global Physical Damage
+- Adds \d+ to \d+ Physical Damage to Bow Attacks
+- \d+% of Life Regenerated per second
+- \d+% reduced Character Size
+- \d+% chance to gain an Endurance Charge on Kill
+- \d+% increased Skill Effect Duration
+- \d+% increased Attributes
+- Enemies Cannot Leech Life From you
+- \d+% chance to Freeze, Shock and Ignite
+- +\d+ to Strength and Intelligence
+- +\d+% to Lightning Resistance
+- \d+% increased Stun Duration on Enemies
+- \d+% reduced Chill Duration on you
+- Socketed Gems are supported by Level \d+ Melee Splash
+- \d+% reduced Enemy Stun Threshold
+- Grants Level \d+ Vitality Skill
+- Grants Level \d+ Purity of Ice Skill
+- Adds \d+ to \d+ Fire Damage to Attacks
+- Reflects \d+ Physical Damage to Melee Attackers
+- +\d+ to all Attributes
+- +\d+ to maximum Mana
+- \d+% increased Mana Regeneration Rate
+- \d+% chance to Dodge Attacks
+- Grants Level \d+ Anger Skill
+- Properties are doubled while in a Breach
+- +\d+ to Intelligence
+- \d+ Life Regenerated per second
+- \d+% of Damage is taken from Mana before Life
+- \d+% of Physical Damage Converted to Fire Damage
+- Socketed Gems are supported by Level \d+ Multistrike
+- \d+% additional Physical Damage Reduction
+- +\d+ to Weapon range
+- \d+% chance to cause Bleeding on Hit
+- \d+% increased Fire Damage
+- \d+% chance to gain a Power Charge on Kill
+- Grants Level \d+ Purity of Elements Skill
+- \d+% of Physical Damage Converted to Cold Damage
+- \d+.\d+% of Lightning Damage Leeched as Life
+- \d+% increased Elemental Damage with Attack Skills
+- Socketed Gems are supported by Level \d+ Life Leech
+- +\d+% to Chaos Resistance
+- \d+.\d+% of Physical Attack Damage Leeched as Life
+- \d+% increased Global Defences
+- Grants Level \d+ Assassin's Mark Skill
+- Grants Level \d+ Elemental Weakness Skill
+- Socketed Gems are supported by Level \d+ Elemental Damage with Attacks
+- +\d+% to Cold Resistance
+- -\d+ Physical Damage taken from Attacks
+- +\d+ to Level of Socketed Gems
+- \d+% of Physical Damage Converted to Lightning Damage
+- Curse Enemies with Level \d+ Temporal Chains on Hit
+- You can catch Corrupted Fish
+- \d+% increased Spell Damage
+- +\d+ Life and Mana gained for each Enemy hit
+- \d+% increased Attack Speed
+- \d+% chance to Avoid being Frozen
+- Grants Level \d+ Purity of Fire Skill
+- \d+% of Lightning Damage from Hits taken as Fire Damage
+- Grants Level \d+ Discipline Skill
+- Socketed Gems are Supported by Level \d+ Added Fire Damage
+- +\d+ to Maximum Frenzy Charges
+- +\d+ to Armour and Evasion Rating
+- \d+% increased Cast Speed
+- Adds \d+ to \d+ Lightning Damage to Attacks
+- \d+% of Cold Damage from Hits taken as Lightning Damage
+- +\d+ to Dexterity and Intelligence
+- \d+% increased Accuracy Rating
+- \d+% of Fire Damage from Hits taken as Lightning Damage
+- +\d+% to Cold and Lightning Resistances
+- \d+% increased Attack and Cast Speed
+- Arrows Pierce \d+ additional Target
+- Adds \d+ to \d+ Chaos Damage to Attacks
+- \d+% of Fire Damage from Hits taken as Cold Damage
+- \d+% reduced Ignite Duration on you
+- Grants Level \d+ Haste Skill
+- Socketed Gems are supported by Level \d+ Stun
+- \d+% increased Rarity of Items found
+- \d+% additional Block Chance while Dual Wielding
+- You cannot be Cursed with Silence
+- Grants Level \d+ Wrath Skill
+- +\d+ Mana gained for each Enemy hit by your Attacks
+- Socketed Gems are supported by Level \d+ Fork
+- \d+% increased Endurance, Frenzy and Power Charge Duration
+- +\d+% to Fire Resistance
+- \d+% increased Attack Damage
+- \d+% increased maximum Mana
+- Damage Penetrates \d+% Elemental Resistances
+- Grants Level \d+ Determination Skill
+- Has \d+ Abyssal Socket
+- Grants Level \d+ Vulnerability Skill
+- \d+% of Physical Attack Damage Leeched as Life
+- \d+% increased Cold Damage
+- \d+% increased maximum Life
+- \d+% of Damage taken gained as Mana over \d+ seconds when Hit
+- Curse Enemies with Level \d+ Elemental Weakness on Hit
+- +\d+ to Level of Socketed Vaal Gems
+- \d+% increased Projectile Attack Damage
+- Socketed Gems are supported by Level \d+ Cast when Stunned
+- \d+% increased Critical Strike Chance
+- \d+% increased Movement Speed
+- +\d+ to maximum number of Zombies
+- Adds \d+ to \d+ Cold Damage to Attacks
+- Projectiles Pierce \d+ additional Targets
+- Minions deal \d+% increased Damage
+- \d+% reduced Freeze Duration on you
+- \d+% increased Life Leeched per second for each Equipped Corrupted Item
+- +\d+% to all maximum Resistances
+- \d+.\d+% of Life Regenerated per second
+- \d+% Chance to Block
+- Adds \d+ to \d+ Physical Damage to Attacks
+- +\d+ Life gained for each Enemy hit by your Attacks
+- +\d+ to Strength
+- \d+% Chance to Block Spells
+- Arrows Pierce an additional Target
+- +\d+ to Dexterity
+- +\d+ to Maximum Endurance Charges
+- Culling Strike
+- \d+% additional Chance to receive a Critical Strike
+- Grants Level \d+ Hatred Skill
+- +\d+% to Global Critical Strike Multiplier
+- +\d+ to Strength and Dexterity
+- \d+% increased Damage
+- \d+.\d+% of Cold Damage Leeched as Life
+- \d+% chance to gain a Frenzy Charge on Kill
+- \d+% increased Block Recovery
+- \d+% chance to Cause Monsters to Flee
+- Socketed Gems are Supported by Level \d+ Increased Area of Effect
+- Grants Level \d+ Grace Skill
+- +\d+ Mana gained for each Enemy hit by Attacks
+- Adds \d+ to \d+ Fire Damage to Bow Attacks
+- Gain \d+% of Physical Damage as Extra Damage of a random Element
+- Socketed Skill Gems get a \d+% Mana Multiplier
+- Grants Level \d+ Projectile Weakness Skill
+- +\d+ to Maximum Power Charges
+- \d+% increased Stun and Block Recovery
+- \d+% chance to Avoid being Shocked
+- \d+% increased Quantity of Items found
+- \d+% increased Projectile Speed
+- \d+% chance to Dodge Spell Damage
+- \d+% increased Chaos Damage
+- \d+% chance to Avoid being Ignited
+- Has \d+ Socket
+- Socketed Gems are supported by Level \d+ Increased Critical Damage
+- \d+% increased Area of Effect
+- +\d+ to maximum Life
+- \d+% of Lightning Damage from Hits taken as Cold Damage
+- Grants Level \d+ Clarity Skill
+- \d+% increased Melee Damage
+- +\d+% to Fire and Cold Resistances
+- +\d+% to Fire and Lightning Resistances
+- \d+% increased Elemental Damage
+- Curse Enemies with Level \d+ Vulnerability on Hit
+- Socketed Gems are supported by Level \d+ Additional Accuracy
+- \d+% increased Quantity of Fish Caught
+- \d+% reduced Shock Duration on you
+- \d+.\d+% of Fire Damage Leeched as Life
+- \d+% increased Mana Leeched per second for each Equipped Corrupted Item
+- Bow Attacks fire an additional Arrow
+- \d+% increased Rarity of Fish Caught
+- +\d+ to Accuracy Rating
+- Socketed Gems are Supported by Level \d+ Faster Casting
+- \d+% of Cold Damage from Hits taken as Fire Damage
+- Can have up to \d+ additional Trap placed at a time
+- Grants Level \d+ Purity of Lightning Skill
+- Grants Level \d+ Flammability Skill
+- Socketed Gems are Supported by Level \d+ Elemental Proliferation
+- +\d+ to maximum Energy Shield
+- Socketed Gems are supported by Level \d+ Cast On Critical Strike
+- Grants Level \d+ Conductivity Skill
+- \d+% increased Fish Bite Sensitivity
+
+explicitmods:
+- Allies Resist Elemental Damage
+- \d+% increased Flask Life Recovery rate
+- \d+% Chance to Block Spells
+- Adds \d+ to \d+ Fire Damage to Axe Attacks
+- Area has patches of chilled ground
+- Unaffected by Desecrated Ground
+- Grants Level \d+ Hatred Skill
+- Adds \d+ to \d+ Physical Damage to Sword Attacks
+- \d+% chance to gain an Endurance Charge when you Block
+- Socketed Gems are Supported by Level \d+ Physical Projectile Attack Damage
+- \d+% increased Area Damage
+- +\d+% to Critical Strike Multiplier for Spells
+- \d+% more Rare Monsters
+- Area contains many Totems
+- Totems gain +\d+% to all Elemental Resistances
+- \d+% increased Shock Duration on Enemies
+- Socketed Gems are Supported by Level \d+ Trap Cooldown
+- +\d+ Life gained for each Enemy hit by your Attacks
+- +\d+% to Critical Strike Multiplier with Lightning Skills
+- Monsters have a \d+% chance to cause Elemental Ailments on Hit
+- \d+% increased Mana Regeneration Rate while moving
+- Cold Damage
+- \d+% increased Energy Shield
+- Players have \d+% reduced Block Chance
+- \d+% chance to gain an Endurance Charge on Critical Strike
+- \d+% increased Damage per \d+ Intelligence
+- Socketed Gems are Supported by Level \d+ Burning Damage
+- Summons Spawn
+- \d+.\d+ Life Regenerated per second
+- Area is inhabited by Cultists of Kitava
+- |-
+  \d+% chance to Dodge Attacks and Spells if you've
+  been Hit Recently
+- Hexproof
+- \d+% increased Melee Physical Damage while holding a Shield
+- Socketed Gems are Supported by Level \d+ Ancestral Call
+- \d+% reduced Reflected Elemental Damage taken
+- Minions Leech \d+.\d+% of Damage as Life
+- Adds \d+ to \d+ Cold Damage
+- Players are Cursed with Vulnerability
+- Gain \d+% of Physical Damage as Extra Cold Damage
+- Socketed Gems are Supported by Level \d+ Cast On Melee Kill
+- \d+% increased Area of Effect per \d+ Strength
+- Uses Flicker Strike
+- Uses Cleave
+- Casts Fireball
+- \d+% increased Monster Cast Speed
+- Players are Cursed with Enfeeble
+- 'Spells have +\d+% to Critical Strike Chance '
+- Erupting Winds
+- Socketed Gems Chain \d+ additional times
+- Monsters Poison on Hit
+- Rhoa Feather Lure
+- Minions have +\d+% to Chaos Resistance
+- Enemies killed explode dealing \d+% of their Life as Fire Damage
+- Adds \d+ to \d+ Physical Damage
+- Burns Ground on Death
+- \d+% increased Physical Damage with One Handed Melee Weapons
+- Totemic Wood Lure
+- \d+% increased Damage over Time while holding a Shield
+- Enemies are Slowed
+- +\d+ Life gained on Kill
+- Socketed Gems are Supported by Level \d+ Item Rarity
+- \d+% increased Monster Attack Speed
+- Recover \d+% of your Maximum Life when you Block
+- Fire Damage and Igniting
+- Weeping Essence of Sorrow
+- Players have \d+% less Recovery Rate of Life and Energy Shield
+- Berserk Fury
+- \d+% increased Movement speed while on Burning, Chilled or Shocked ground
+- Adds \d+ to \d+ Lightning Damage to Sword Attacks
+- \d+ Life Regenerated per second
+- \d+% increased Accuracy Rating if you haven't Killed Recently
+- \d+% increased Armour and Energy Shield
+- \d+% increased maximum Mana
+- +\d+% to Fire and Cold Resistances
+- Unaffected by Chilled Ground
+- Suppressing Fire
+- Area is inhabited by \d+ additional Rogue Exiles
+- \d+% increased Rarity of Items found during any Flask Effect
+- Drops Burning Ground while moving, dealing \d+ Fire Damage per second
+- Recover \d+% of Maximum Life on Kill
+- Adds \d+ to \d+ Fire Damage to Spells while wielding a Two Handed Weapon
+- Adds \d+ to \d+ Lightning Damage
+- Socketed Gems are Supported by Level \d+ Spell Totem
+- \d+% chance to Avoid being Chilled
+- Craicic Presence
+- Players have no Life or Mana Regeneration
+- +\d+ to maximum number of Zombies
+- \d+% increased Critical Strike Chance against Poisoned Enemies
+- Unstable Swarm
+- \d+% increased Physical Damage with Daggers
+- \d+% increased Critical Strike Chance for Spells
+- \d+% chance to Avoid Fire Damage when Hit
+- +\d+ Mana gained when you Block
+- Adds \d+ to \d+ Cold Damage to Spells while Dual Wielding
+- Adds \d+ to \d+ Fire Damage to Mace Attacks
+- \d+% chance to gain Phasing for \d+ seconds on Kill
+- Reflects \d+ Physical Damage to Melee Attackers
+- \d+% increased Attack Speed if you've Killed Recently
+- Raven Caller
+- Monsters gain \d+ Endurance Charges every \d+ seconds
+- \d+% increased Effect of Fortify on you
+- Curse Enemies with Level \d+ Assassin's Mark on Hit
+- \d+% increased maximum Life
+- \d+% increased Spell Damage per \d+ Intelligence
+- \d+% increased Movement Speed
+- \d+% chance to deal Double Damage
+- Socketed Gems have \d+% reduced Mana Reservation
+- 'Spells have +\d+.\d+% to Critical Strike Chance '
+- \d+% chance to Freeze, Shock and Ignite
+- \d+.\d+% of Physical Damage Leeched as Life
+- \d+% chance to Avoid being Poisoned
+- Cannot be Frozen
+- Socketed Gems are supported by Level \d+ Cast On Critical Strike
+- +\d+ to Level of Socketed Gems
+- Minions deal \d+ to \d+ additional Fire Damage
+- Adds \d+ to \d+ Chaos Damage to Spells while Dual Wielding
+- Attacks have +\d+% to Critical Strike Chance
+- Cannot Leech Mana from Monsters
+- \d+% chance to Avoid Lightning Damage when Hit
+- Minions Regenerate \d+.\d+% Life per second
+- Corrupting Blood
+- Spectral Stampede
+- Area is inhabited by Sea Witches and their Spawn
+- \d+% increased Spell Damage while Dual Wielding
+- +\d+% to Chaos Resistance during any Flask Effect
+- \d+% chance to gain a Frenzy Charge when you Block
+- Items and Gems have \d+% reduced Attribute Requirements
+- +\d+% to Global Critical Strike Multiplier
+- Minions have \d+% increased maximum Life
+- Monsters reflect \d+% of Physical Damage
+- Area is inhabited by Humanoids
+- Other Allies Cannot Die
+- \d+% additional Chance to Block Spells with Shields
+- Monsters gain \d+ Power Charges every \d+ seconds
+- \d+% chance to gain a Power Charge when you Block
+- Storm Cultist's Grip
+- \d+% Global chance to Blind Enemies on hit
+- Socketed Gems are Supported by Level \d+ Volley
+- Adds \d+ to \d+ Fire Damage to Claw Attacks
+- Monsters have \d+% increased Area of Effect
+- Slaying Enemies close together can attract monsters from Beyond
+- +\d+ to Strength and Intelligence
+- \d+% chance to Shock Attackers for \d+ seconds on Block
+- Socketed Gems are Supported by Level \d+ Trap And Mine Damage
+- Removes Bleeding when you use a Warcry
+- Fenumal Presence
+- Alchemist's Grip
+- Adds \d+ to \d+ Fire Damage to Spells while holding a Shield
+- Putrid Flight
+- \d+% increased Area of Effect
+- \d+% additional Block Chance if you were Damaged by a Hit Recently
+- Minions deal \d+ to \d+ additional Chaos Damage
+- Socketed Gems are Supported by Level \d+ Elemental Focus
+- Unique Boss has \d+% increased Attack and Cast Speed
+- Monsters gain a Power Charge on Hit
+- \d+% increased Cast Speed if you've Killed Recently
+- +\d+ to Level of Socketed Chaos Gems
+- Area is a Maze
+- \d+% chance to Maim on Hit
+- Socketed Gems are Supported by Level \d+ Power Charge On Critical Strike
+- Eternal Iron Hook
+- \d+% increased Poison Duration
+- \d+% increased Mana Recovery rate
+- Shroud Walker
+- Adds \d+ to \d+ Fire Damage if you've Blocked Recently
+- Minions deal \d+ to \d+ additional Physical Damage
+- Damage Penetrates \d+% Fire Resistance
+- Monsters cannot be Stunned
+- Adds \d+ to \d+ Cold Damage to Sword Attacks
+- +\d+ to Maximum Power Charges
+- \d+% of Physical Damage Converted to Chaos Damage
+- Grants Level \d+ Herald of Thunder Skill
+- Casts Arctic Breath
+- Adds \d+ to \d+ Fire Damage to Spells while Dual Wielding
+- Adds \d+ to \d+ Fire Damage to Bow Attacks
+- Grants Level \d+ Anger Skill
+- \d+% increased Totem Life
+- Minions have +\d+% to all Elemental Resistances
+- Players have \d+% less Area of Effect
+- Monsters have \d+% increased Accuracy Rating
+- Unaffected by Burning Ground
+- Monsters have \d+% increased Critical Strike Chance
+- Ezomyte Shell Hook
+- +\d+% to Critical Strike Multiplier if you have Blocked Recently
+- Curse Enemies with Level \d+ Poacher's Mark on Hit
+- Grants Level \d+ Aspect of the Avian Skill
+- \d+% reduced Chaos Damage taken over time
+- Damage Penetrates \d+% Cold Resistance
+- \d+% increased Cold Damage
+- Grants Level \d+ Vitality Skill
+- +\d+% to Critical Strike Multiplier if you've Killed Recently
+- Bringer of Bones
+- Cutthroat's Grip
+- \d+% more Magic Monsters
+- Area has patches of burning ground
+- \d+% chance to gain an Endurance Charge when you Taunt an Enemy
+- Minions Regenerate \d+ Life per second
+- Frenzy as Damaged
+- Monsters gain \d+ Frenzy Charge every \d+ seconds
+- \d+% increased Bleeding Duration
+- \d+% additional Physical Damage Reduction
+- Minions deal \d+ to \d+ additional Lightning Damage
+- Thief's Grip
+- Aspect of the Hellion
+- Bonus Energy Shield
+- Crimson Flock
+- \d+% increased Totem Damage
+- \d+% increased Armour, Evasion and Energy Shield
+- Adds \d+ to \d+ Cold Damage to Mace Attacks
+- \d+% increased Damage if you've Killed Recently
+- Remove Ignite and Burning when you use a Flask
+- Cold Damage and Freezing
+- \d+% increased Movement Speed during any Flask Effect
+- Attacks have +\d+.\d+% to Critical Strike Chance
+- \d+.\d+ Mana Regenerated per second
+- Group Frenzy on Death
+- \d+% increased Armour and Evasion
+- Skills which Throw Traps throw an additional Trap
+- Enemies take Chaos Damage over time
+- Grants Level \d+ Abyssal Cry Skill
+- \d+.\d+% of Fire Damage Leeched as Life
+- Unwavering
+- \d+% increased Rarity of Fish Caught
+- Socketed Gems deal \d+ to \d+ additional Fire Damage
+- Socketed Gems are Supported by Level \d+ Mana Leech
+- \d+% increased Damage per Power Charge
+- \d+% increased Movement Speed if you've Killed Recently
+- \d+% increased Attack and Cast Speed
+- Chronophage
+- \d+% additional Physical Damage Reduction against Abyssal Monsters
+- Physical Thorns
+- \d+% increased Melee Critical Strike Chance
+- Life Regen
+- +\d+% to all maximum Resistances
+- Extra Lightning Damage
+- +\d+% to Lightning Resistance
+- \d+% reduced Mana Cost of Skills
+- Monsters are Hexproof
+- Area is inhabited by Ghosts
+- \d+% additional Block Chance if there are at least \d+ nearby Enemies
+- Charlatan's Grip
+- +\d+ to all Attributes
+- \d+% increased Monster Damage
+- Socketed Gems are supported by Level \d+ Elemental Damage with Attacks
+- -\d+ Physical Damage taken from Attacks
+- Casts Ice Spear
+- \d+% increased Fire Damage
+- +\d+ to Level of Socketed Fire Gems
+- Monsters cannot be affected by Elemental Ailments
+- Unaffected by Shocked Ground
+- \d+% chance to Taunt Enemies on Hit with Attacks
+- +\d+ to Weapon range
+- Socketed Gems are supported by Level \d+ Multistrike
+- Vaal Cultist's Grip
+- Players cannot Regenerate Life, Mana or Energy Shield
+- \d+% increased Minion Damage if you've used a Minion Skill Recently
+- \d+% increased Mine Damage
+- \d+% of Physical Damage from Hits taken as Cold Damage
+- Cannot be Poisoned
+- \d+% chance to gain an Endurance Charge on Kill
+- \d+% increased Projectile Attack Damage
+- Adds \d+ to \d+ Physical Damage to Attacks
+- +\d+ Mana gained on Kill
+- \d+% increased Physical Damage with Claws
+- \d+% faster start of Energy Shield Recharge
+- Recover \d+% of Energy Shield when you Block
+- +\d+% to Critical Strike Multiplier with Fire Skills
+- Minions have \d+% increased Attack and Cast Speed if you or your Minions have Killed
+  Recently
+- Siren Worm Bait
+- \d+% additional Chance to Block Spells while Dual Wielding
+- Triggers Level \d+ Spectral Spirits when Equipped
+- Melee Movement Skills have \d+% chance to Fortify on Hit
+- \d+% of Damage is taken from Mana before Life
+- Screaming Essence of Rage
+- Adds \d+ to \d+ Lightning Damage to Attacks
+- Area is inhabited by Undead
+- \d+% increased Critical Strike Chance if you have Killed Recently
+- Monsters gain an Endurance Charge on Hit
+- -\d+ to Total Mana Cost of Skills
+- \d+% chance to Knock Enemies Back on hit
+- +\d+ to Level of Socketed Active Skill Gems
+- +\d+% to Critical Strike Multiplier with Cold Skills
+- Area is inhabited by ranged monsters
+- Socketed Gems gain \d+% of Physical Damage as extra Lightning Damage
+- Socketed Gems are Supported by Level \d+ Unbound Ailments
+- Bow Attacks fire an additional Arrow
+- +\d+% Monster Fire Resistance
+- Adds \d+ to \d+ Chaos Damage to Spells while wielding a Two Handed Weapon
+- \d+% increased Light Radius
+- \d+% less effect of Curses on Monsters
+- Curse Enemies with Level \d+ Warlord's Mark on Hit
+- \d+% increased Projectile Attack Damage per \d+ Accuracy Rating
+- \d+% increased Evasion and Energy Shield
+- Farric Presence
+- Players take \d+ Chaos Damage per second
+- When you Kill a Rare Monster, \d+% chance to gain one of its mods for \d+ seconds
+- Grants Level \d+ Herald of Ice Skill
+- \d+ Energy Shield Regenerated per second
+- Casts Molten Shell
+- Socketed Gems are Supported by Level \d+ Endurance Charge on Melee Stun
+- \d+% chance to Block Spells if you were Damaged by a Hit Recently
+- \d+% increased Lightning Damage
+- +\d+% to Monster Critical Strike Multiplier
+- Area has patches of desecrated ground
+- Players are Cursed with Elemental Weakness
+- Socketed Attacks have +\d+% to Critical Strike Multiplier
+- Unique Boss has \d+% increased Area of Effect
+- \d+% increased Quantity of Items found
+- Arsonist's Grip
+- Casts Vulnerability
+- Uses Puncture
+- Area is inhabited by Goatmen
+- Gain \d+% of Physical Damage as Extra Fire Damage
+- Socketed Gems are Supported by Level \d+ Added Fire Damage
+- \d+% increased Attack Speed with Two Handed Melee Weapons
+- \d+% of Energy Shield Regenerated per second
+- Socketed Gems are Supported by Level \d+ Cast when Damage Taken
+- +\d+% to Critical Strike Multiplier against Enemies that are on Full Life
+- Thug's Grip
+- \d+% increased Damage with Bleeding
+- Socketed Gems are Supported by Level \d+ Efficacy
+- \d+% chance to Avoid interruption from Stuns while Casting
+- \d+% reduced Effect of Curses on you
+- Adds \d+ to \d+ Physical Damage to Spells while holding a Shield
+- \d+% increased Physical Damage with Two Handed Melee Weapons
+- \d+% increased Global Physical Damage
+- Seditionist's Grip
+- \d+% additional Chance to Block with Staves
+- \d+% increased Damage per \d+% Block Chance
+- Recover \d+% of your maximum Mana when you Block
+- Damage Penetrates \d+% Elemental Resistance if you haven't Killed Recently
+- Gain \d+% of Physical Damage as Extra Fire Damage if you've dealt a Critical Strike
+  Recently
+- \d+% chance to Freeze
+- +\d+% Chance to Block with Shields
+- \d+% increased Fishing Line Strength
+- +\d+ to Level of Socketed Support Gems
+- Socketed Attacks have +\d+% to Critical Strike Chance
+- \d+% chance for your Flasks to not consume Charges
+- Monsters have \d+% chance to Avoid Elemental Ailments
+- +\d+ Energy Shield gained for each Enemy hit by your Attacks
+- Area has increased monster variety
+- \d+% increased Monster Movement Speed
+- +\d+% to Critical Strike Multiplier if you haven't dealt a Critical Strike Recently
+- Monsters deal \d+% extra Damage as Fire
+- +\d+% Monster Cold Resistance
+- Monsters gain \d+ Power Charge every \d+ seconds
+- Socketed Gems are Supported by Level \d+ Cold Penetration
+- Allies have Energy Shield
+- +\d+% to maximum Cold Resistance
+- Tiger Prey
+- Adds \d+ to \d+ Physical Damage to Staff Attacks
+- Accurate
+- +\d+% Monster Chaos Resistance
+- Socketed Gems are Supported by Level \d+ Spell Cascade
+- Damage Penetrates \d+% Elemental Resistances
+- Gain \d+% of Elemental Damage as Extra Chaos Damage
+- \d+% increased Damage against Abyssal Monsters
+- Allies Regenerate Life
+- +\d+ to Melee Weapon and Unarmed Attack range
+- +\d+ to Level of Socketed Lightning Gems
+- \d+% increased Stun Duration on Enemies
+- \d+% chance to Avoid Cold Damage when Hit
+- Socketed Gems are supported by Level \d+ Increased Critical Damage
+- Adds \d+ to \d+ Chaos Damage to Spells while holding a Shield
+- \d+% increased Melee Damage
+- \d+% increased Physical Damage with Staves
+- Grants Level \d+ Envy Skill
+- Uses Phase Run
+- Enrages on Low Life
+- \d+% chance to gain a Power, Frenzy or Endurance Charge on Kill
+- \d+% increased Cooldown Recovery Speed
+- \d+% increased Freeze Duration on Enemies
+- \d+% increased Dexterity
+- \d+% chance to Avoid being Shocked
+- +\d+ to Accuracy Rating
+- Socketed Gems have \d+% chance to Ignite
+- \d+% chance to avoid Bleeding
+- \d+% increased Damage per \d+ Strength
+- Allies Deal Extra Physical Damage
+- +\d+ to Maximum Endurance Charges
+- +\d+% to Chaos Resistance
+- \d+% increased Mana Regeneration Rate
+- Socketed Gems are supported by Level \d+ Melee Splash
+- Socketed Gems are Supported by Level \d+ Poison
+- Adds \d+ to \d+ Cold Damage to Axe Attacks
+- Gain \d+% of Physical Damage as Extra Lightning Damage
+- Projectiles Pierce \d+ additional Targets
+- Grants Level \d+ Rallying Cry Skill
+- Churning Claws
+- Allies Move and Attack Faster
+- \d+% increased Physical Weapon Damage while Dual Wielding
+- Monsters have a \d+% chance to avoid Poison, Blind, and Bleeding
+- Socketed Gems are Supported by Level \d+ Iron Grip
+- Adds \d+ to \d+ Lightning Damage to Spells and Attacks
+- Crushing Claws
+- \d+% increased Attack Speed while Dual Wielding
+- Grants Level \d+ Enduring Cry Skill
+- \d+ Mana Regenerated per second
+- Hadal Dive
+- \d+% increased Ignite Duration on Enemies
+- Area is \d+% larger
+- Area is inhabited by Bandits
+- Socketed Gems are Supported by Level \d+ Less Duration
+- Adds \d+ to \d+ Lightning Damage to Attacks with this Weapon per \d+ Intelligence
+- +\d+% of maximum Life per second to maximum Life Leech rate
+- +\d+ to Level of Socketed Cold Gems
+- \d+% increased Trap Throwing Speed
+- \d+% increased Flask effect duration
+- Damage Penetrates \d+% Elemental Resistances during any Flask Effect
+- \d+% increased Skill Effect Duration
+- Adds \d+ to \d+ Physical Damage to Dagger Attacks
+- Minions have \d+% chance to Taunt on Hit with Attacks
+- \d+% reduced Attribute Requirements
+- +\d+% to Quality of Socketed Support Gems
+- Soul Conduit
+- \d+% reduced Mana Reserved
+- \d+% increased Burning Damage
+- Extra Fire Damage
+- \d+% reduced Enemy Stun Threshold
+- +\d+ Armour if you've Blocked Recently
+- Socketed Gems are Supported by Level \d+ Cast While Channelling
+- Blood Geyser
+- \d+% increased Physical Damage
+- \d+% increased Projectile Speed
+- \d+% increased Attack Speed with Swords
+- Monsters cannot be Taunted
+- \d+% chance to avoid Projectiles
+- \d+% increased Cast Speed if you've dealt a Critical Strike Recently
+- Satyr Storm
+- \d+% increased Critical Strike Chance with Lightning Skills
+- Adds \d+ to \d+ Fire Damage to Sword Attacks
+- Extra Cold Damage
+- +\d+ to maximum Life
+- Players take \d+.\d+ Chaos Damage per second
+- \d+% chance to Avoid being Stunned
+- \d+% increased Attack Speed if you've dealt a Critical Strike Recently
+- Allies have increased Accuracy and Critical Strike Chance
+- Rogue's Grip
+- Grants Level \d+ Haste Skill
+- +\d+.\d+% of maximum Life per second to maximum Life Leech rate
+- Grants Level \d+ Aspect of the Spider Skill
+- +\d+% Monster Elemental Resistance
+- \d+% of Block Chance applied to Spells
+- \d+% Chance to Block
+- Adds \d+ to \d+ Lightning Damage to Bow Attacks
+- Lightning Damage
+- +\d+% to Fire Resistance
+- Socketed Spells have +\d+% to Critical Strike Chance
+- Adds \d+ to \d+ Lightning Damage to Claw Attacks
+- May inflict Maim
+- Minions have \d+% increased Cast Speed
+- Adds \d+ to \d+ Chaos Damage to Spells
+- Casts Temporal Chains
+- +\d+ to Level of Socketed Aura Gems
+- Socketed Gems are Supported by Level \d+ Lightning Penetration
+- Fertile Presence
+- \d+% increased Evasion Rating
+- \d+% of Physical Damage from Hits taken as Fire Damage
+- Vaal Soul Hook
+- \d+% of Life Regenerated per second
+- Embezzler's Grip
+- Monsters Fracture
+- Players have Blood Magic
+- Socketed Gems are Supported by Level \d+ Controlled Destruction
+- Minions have \d+% chance to Hinder Enemies on Hit with Spells, with \d+% reduced
+  Movement Speed
+- Uses Viper Strike
+- Warlord's Grip
+- +\d+ to Evasion Rating
+- Recover \d+% of Maximum Mana on Kill
+- \d+% chance to gain a Frenzy Charge on Kill
+- \d+% increased Critical Strike Chance if you haven't dealt a Critical Strike Recently
+- Grants Level \d+ Aspect of the Crab Skill
+- \d+% increased Experience gain
+- \d+% increased Armour
+- \d+% increased Damage
+- Monsters take \d+% reduced Extra Damage from Critical Strikes
+- Socketed Gems are Supported by Level \d+ Innervate
+- Socketed Gems are Supported by Level \d+ Lesser Poison
+- \d+% increased Physical Damage with Axes
+- Casts Spark
+- Adds \d+ to \d+ Lightning Damage to Spells
+- Adds \d+ to \d+ Lightning Damage against Shocked Enemies
+- Minions deal \d+ to \d+ additional Cold Damage
+- Socketed Gems are Supported by Level \d+ Ruthless
+- Adds \d+ to \d+ Fire Damage to Spells and Attacks
+- Gains Endurance Charges
+- Incendiary Mite
+- \d+% increased Attack Speed with Claws
+- Adds \d+ to \d+ Lightning Damage to Mace Attacks
+- Extra Damage and Bleeding
+- \d+% increased Strength
+- Grants Level \d+ Clarity Skill
+- Socketed Gems are Supported by Level \d+ Minion Damage
+- Casts Shock Nova
+- Wealthy
+- Socketed Gems are Supported by Level \d+ Increased Duration
+- \d+% of Physical Attack Damage Leeched as Life
+- \d+.\d+% of Physical Attack Damage Leeched as Life
+- \d+% chance to gain Unholy Might for \d+ seconds on Kill
+- Socketed Gems are Supported by Level \d+ Melee Physical Damage
+- Adds \d+ to \d+ Chaos Damage to Attacks
+- \d+% increased Movement Speed during Flask effect
+- \d+% additional Physical Damage Reduction during any Flask Effect
+- \d+.\d+% of Chaos Damage Leeched as Life
+- Adds \d+ to \d+ Chaos Damage
+- \d+% chance to gain a Power Charge on Critical Strike
+- Minions have \d+% chance to Blind on Hit with Attacks
+- Cannibal's Grip
+- Karui Stone Hook
+- Gain Onslaught for \d+ seconds when Hit
+- +\d+% to maximum Fire Resistance
+- Adds \d+ to \d+ Physical Damage to Spells while wielding a Two Handed Weapon
+- Adds \d+ to \d+ Lightning Damage to Staff Attacks
+- Grants Level \d+ Grace Skill
+- +\d+ Mana gained for each Enemy hit by your Attacks
+- \d+% increased Attack Speed with One Handed Melee Weapons
+- Area contains two Unique Bosses
+- Player Dodge chance is Unlucky
+- \d+% additional Block Chance per Endurance Charge
+- +\d+% to Cold Resistance
+- \d+% increased Attack Speed with Axes
+- Adds \d+ to \d+ Fire Damage
+- \d+% increased Cast Speed while wielding a Staff
+- Adds \d+ to \d+ Physical Damage to Bow Attacks
+- \d+% increased Critical Strike Chance against Blinded Enemies
+- Spectral Swipe
+- \d+% increased Duration
+- \d+% increased Trap Damage
+- Area is inhabited by Animals
+- \d+% chance to Hinder Enemies on Hit with Spells, with \d+% reduced Movement Speed
+- +\d+ to Melee Weapon Range if you have Killed Recently
+- \d+% reduced Flask Charges used
+- \d+% increased Cast Speed during any Flask Effect
+- +\d+% to Fire and Lightning Resistances
+- Hits with this Weapon have Culling Strike against Bleeding Enemies
+- Soul Eater
+- \d+.\d+% of Energy Shield Regenerated per second
+- Adds \d+ to \d+ Cold Damage to Claw Attacks
+- Adds \d+ to \d+ Fire Damage to Dagger Attacks
+- \d+% increased Critical Strike Chance with One Handed Melee Weapons
+- +\d+ Life gained for each Blinded Enemy Hit by this Weapon
+- Far Shot
+- +\d+ to maximum number of Skeletons
+- Adds \d+ to \d+ Fire Damage against Ignited Enemies
+- Minions deal \d+% increased Damage against Abyssal Monsters
+- +\d+ to Strength and Dexterity
+- Monsters gain a Frenzy Charge on Hit
+- \d+% increased Attack Speed with Staves
+- \d+% increased Fishing Range
+- \d+% reduced Reflected Physical Damage taken
+- Summons Exploding Spawn
+- Adds \d+ to \d+ Physical Damage to Spells while Dual Wielding
+- Grants Level \d+ Determination Skill
+- \d+% increased Cast Speed if a Minion has been Killed Recently
+- Socketed Gems are Supported by Level \d+ Reduced Mana
+- +\d+ to Dexterity
+- Socketed Gems deal \d+% more Damage over Time
+- \d+% increased Cast Speed with Lightning Skills
+- \d+% chance to Avoid being Ignited
+- Blasphemer's Grip
+- Fast Attacks
+- Elemental Thorns
+- +\d+ to Strength
+- \d+% increased Physical Damage with Maces
+- \d+% increased Attack Damage
+- Adds \d+ to \d+ Physical Damage to Spells
+- \d+% chance to gain Fortify when you Stun an Enemy with Melee Damage
+- \d+% increased Elemental Damage with Attack Skills
+- Socketed Gems are supported by Level \d+ Faster Projectiles
+- Adds \d+ to \d+ Physical Damage to Mace Attacks
+- Socketed Gems are Supported by Level \d+ Ranged Attack Totem
+- Charges
+- Monsters gain \d+ Frenzy Charges every \d+ seconds
+- Vile Touch
+- Empowers Allies
+- +\d+ to Intelligence
+- +\d+% to Critical Strike Multiplier with Two Handed Melee Weapons
+- \d+% chance to Dodge Attacks
+- \d+% increased Attack Speed with Maces
+- \d+% reduced Reflected Damage taken
+- You take \d+% reduced Extra Damage from Critical Strikes
+- \d+% additional Physical Damage Reduction if you weren't Damaged by a Hit Recently
+- Adds \d+ to \d+ Cold Damage to Dagger Attacks
+- Evasive
+- \d+% increased Attack Speed while holding a Shield
+- \d+% increased Cast Speed with Cold Skills
+- Players are Cursed with Temporal Chains
+- Socketed Gems deal \d+% more Elemental Damage
+- Socketed Gems are Supported by Level \d+ Chance To Bleed
+- \d+% increased Attack Speed with Daggers
+- \d+% additional Block Chance while Dual Wielding
+- Gain an Endurance Charge every \d+ seconds while Stationary
+- Enemies have \d+% reduced Evasion if you have Hit them Recently
+- Blessing of Elements
+- +\d+ to Level of Socketed Melee Gems
+- \d+% increased Physical Damage with Bows
+- Projectiles Pierce an additional Target
+- \d+% increased Effect of Chill
+- Adds \d+ to \d+ Fire Damage to Attacks with this Weapon per \d+ Strength
+- +\d+% to Cold and Lightning Resistances
+- Place an additional Mine
+- Allies Deal Substantial Extra Physical Damage
+- May inflict Vulnerability on Hit
+- Attacks have \d+% chance to cause Bleeding
+- Area is inhabited by Solaris fanatics
+- Smuggler's Grip
+- \d+% increased Area of Effect if you have Stunned an Enemy Recently
+- Monsters deal \d+% extra Damage as Cold
+- This Map's Modifiers to Quantity of Items found also apply to Rarity
+- Deep One's Presence
+- Spy's Grip
+- Gain an Endurance, Frenzy or Power charge when you Block
+- \d+% increased Spell Damage
+- Minions have \d+% Chance to Block
+- Gains Power Charges
+- Mutilator's Grip
+- +\d+ to maximum Energy Shield
+- Area is inhabited by an additional Invasion Boss
+- Adds \d+ to \d+ Cold Damage to Wand Attacks
+- \d+% increased Movement Speed if you haven't taken Damage Recently
+- -\d+% maximum Player Resistances
+- \d+% of Physical Damage from Hits taken as Lightning Damage
+- Area has patches of shocking ground
+- Area is inhabited by Skeletons
+- \d+% increased Critical Strike Chance with Fire Skills
+- \d+% increased Rarity of Items found from Slain Unique Enemies
+- Adds \d+ to \d+ Cold Damage to Bow Attacks
+- \d+.\d+% of Life Regenerated per second while moving
+- Monsters reflect \d+% of Elemental Damage
+- \d+% increased Accuracy Rating per Frenzy Charge
+- Socketed Gems are Supported by Level \d+ Minion Life
+- Socketed Spells have +\d+% to Critical Strike Multiplier
+- Socketed Gems are Supported by Level \d+ Increased Area of Effect
+- +\d+ to maximum Mana
+- Players have Point Blank
+- \d+% increased Attack Speed during any Flask Effect
+- Adds \d+ to \d+ Cold Damage to Spells while holding a Shield
+- Vulnerability on Hit
+- Adds \d+ to \d+ Cold Damage to Spells
+- +\d+% to Melee Critical Strike Multiplier
+- \d+% increased Damage with Poison
+- \d+% chance to Dodge Attacks if you have Blocked Recently
+- Socketed Gems are Supported by Level \d+ Onslaught
+- Unique Boss deals \d+% increased Damage
+- +\d+ Life gained when you Block
+- Area is inhabited by Lunaris fanatics
+- Fire Damage
+- Summons Apes from Trees
+- \d+% increased Global Critical Strike Chance
+- \d+% increased maximum Energy Shield
+- Recover \d+% of Maximum Energy Shield on Kill
+- Socketed Gems are Supported by Level \d+ Fire Penetration
+- Proximity Shield
+- Cannot Leech Life from Monsters
+- +\d+ Life gained for each Enemy hit by your Spells
+- Vile Hatchery
+- Bringer of Fragility
+- \d+% increased Physical Damage with Wands
+- \d+% increased Melee Damage during any Flask Effect
+- \d+.\d+% of Cold Damage Leeched as Life
+- Chaos Damage
+- \d+% more Monster Life
+- Grants Level \d+ Herald of Ash Skill
+- +\d+ Mana gained for each Enemy Hit by your Spells
+- Items and Gems have \d+% increased Attribute Requirements
+- Adds \d+ to \d+ Cold Damage to Spells and Attacks
+- Nullifier
+- \d+% increased Rarity of Items found
+- \d+% increased Quantity of Fish Caught
+- \d+% reduced Fishing Pool Consumption
+- Socketed Gems are Supported by Level \d+ Trap
+- Adds \d+ to \d+ Physical Damage to Axe Attacks
+- Adds \d+ to \d+ Cold Damage against Chilled or Frozen Enemies
+- \d+% chance to Chill Attackers for \d+ seconds on Block
+- Grants Level \d+ Wrath Skill
+- Adds \d+ to \d+ Fire Damage to Attacks
+- \d+% increased Critical Strike Chance with Elemental Skills
+- \d+% increased Attack Speed with Wands
+- \d+.\d+% of Life Regenerated per second
+- Socketed Gems are Supported by Level \d+ Faster Casting
+- Forger's Grip
+- Socketed Gems are supported by Level \d+ Additional Accuracy
+- \d+% increased Armour if you haven't Killed Recently
+- \d+% increased Life Leeched per second
+- Socketed Gems are supported by Level \d+ Blind
+- Remove Shock when you use a Flask
+- Socketed Gems have +\d+.\d+% Critical Strike Chance
+- Quick
+- Undead
+- \d+% additional Chance to Block Spells with Staves
+- Socketed Gems are Supported by Level \d+ Increased Critical Strikes
+- \d+% chance to Blind Enemies on Hit with Attacks
+- Saqawine Presence
+- Hits can't be Evaded
+- \d+% increased Flask Charges gained
+- Adds \d+ to \d+ Lightning Damage to Spells while Dual Wielding
+- Monsters deal \d+% extra Damage as Lightning
+- \d+% increased Attributes
+- \d+% chance to Shock
+- \d+% increased Physical Damage with Swords
+- \d+% chance to Ignite
+- Area is inhabited by Abominations
+- Your Hits inflict Decay, dealing \d+ Chaos Damage per second for \d+ seconds
+- Players have \d+% less Armour
+- \d+% increased Effect of Shock
+- \d+% of Life Regenerated per second while moving
+- Extra Damage
+- Spikes on Death
+- \d+% increased Critical Strike Chance
+- Monsters gain \d+ Endurance Charge every \d+ seconds
+- Area is inhabited by Demons
+- Adds \d+ to \d+ Physical Damage to Wand Attacks
+- Attacks have \d+% chance to Maim on Hit
+- Gains Frenzy Charges
+- Minions have \d+% increased Movement Speed
+- Apparition
+- +\d+% to Critical Strike Multiplier with Elemental Skills
+- \d+% increased Spell Damage while holding a Shield
+- \d+% increased Cast Speed while holding a Shield
+- Hexfont
+- \d+% increased Energy Shield Recharge Rate
+- Socketed Gems are Supported by Level \d+ Concentrated Effect
+- Socketed Gems are Supported by Level \d+ Hypothermia
+- Frenzy as Kin Slain
+- Bringer of Weakness
+- +\d+% Monster Physical Damage Reduction
+- \d+% increased Life Recovery rate
+- Adds \d+ to \d+ Cold Damage to Staff Attacks
+- +\d+% Chance to Block
+- Unique Boss has \d+% increased Life
+- \d+% increased Elemental Damage
+- Socketed Gems are Supported by Level \d+ Elemental Proliferation
+- Monsters' skills Chain \d+ additional times
+- \d+% increased Damage during any Flask Effect
+- Socketed Gems are Supported by Level \d+ Remote Mine
+- Leeches Life
+- \d+% chance to cause Bleeding on Hit
+- \d+% increased Evasion Rating while moving
+- Fractured
+- \d+% chance to Poison on Hit
+- Socketed Gems are Supported by Level \d+ Maim
+- Culling Strike
+- Gain a Power Charge after you Spend a total of \d+ Mana
+- \d+% increased Damage over Time while Dual Wielding
+- \d+% increased Critical Strike Chance with Cold Skills
+- +\d+% additional Block Chance against Projectiles
+- Damage Penetrates \d+% Lightning Resistance
+- Volatile Flameblood
+- \d+% chance to gain Onslaught for \d+ seconds on Kill
+- Socketed Gems are Supported by Level \d+ Faster Attacks
+- Adds \d+ to \d+ Lightning Damage to Spells while wielding a Two Handed Weapon
+- Winter Bloom
+- Frenzies Allies
+- \d+% chance to Avoid Elemental Ailments
+- Extra Projectiles
+- Uses Enduring Cry
+- Magic Monster Packs each have a Bloodline Mod
+- \d+% increased Attack Speed with Bows
+- +\d+ to Level of Socketed Bow Gems
+- Socketed Gems are supported by Level \d+ Life Leech
+- Gain \d+% of Non-Chaos Damage as extra Chaos Damage
+- \d+% increased Accuracy Rating
+- +\d+ Life gained for each Enemy hit by Attacks
+- +\d+% Monster Lightning Resistance
+- \d+% increased Spell Damage during any Flask Effect
+- Inner Treasure
+- \d+% increased Critical Strike Chance with Two Handed Melee Weapons
+- Adds \d+ to \d+ Lightning Damage to Spells while holding a Shield
+- +\d+ to Level of Socketed Minion Gems
+- Players gain \d+% reduced Flask Charges
+- \d+% increased Damage over Time
+- \d+% increased Cast Speed
+- Powerful Crits
+- Berserker
+- \d+% chance to Recover \d+% of Maximum Mana when you use a Skill
+- Socketed Gems are Supported by Level \d+ Fortify
+- \d+% increased Totem Placement speed
+- |-
+  Immunity to Bleeding during Flask effect
+  Removes Bleeding on use
+- May inflict Bleeding
+- \d+% increased Attack Speed
+- \d+% increased Flask Mana Recovery rate
+- \d+% chance to Dodge Spell Damage
+- Armoured
+- +\d+% to all Elemental Resistances
+- \d+% increased Mine Laying Speed
+- Minions have \d+% increased Attack Speed
+- \d+% increased Energy Shield Recovery rate
+- Necromancer's Grip
+- \d+% increased Damage per \d+ Dexterity
+- +\d+ to Maximum Frenzy Charges
+- \d+% increased Projectile Damage
+- Players are Cursed with Warlord's Mark
+- \d+% chance to Cast Level \d+ Fire Burst on Hit
+- Adds \d+ to \d+ Cold Damage to Attacks with this Weapon per \d+ Dexterity
+- Adds \d+ to \d+ Lightning Damage to Wand Attacks
+- \d+% reduced Elemental Damage Taken while stationary
+- \d+% increased Projectile Attack Damage during any Flask Effect
+- Adds \d+ to \d+ Fire Damage to Staff Attacks
+- \d+% increased effect of Flasks on you
+- Remove Chill and Freeze when you use a Flask
+- Monsters fire \d+ additional Projectiles
+- \d+% increased Intelligence
+- \d+% chance to gain a Power Charge on Kill
+- Adds \d+ to \d+ Lightning Damage to Axe Attacks
+- Aurora Cultist's Grip
+- +\d+% to Critical Strike Multiplier while Dual Wielding
+- \d+% increased Cast Speed with Fire Skills
+- \d+.\d+% of Lightning Damage Leeched as Life
+- +\d+% to Critical Strike Multiplier with One Handed Melee Weapons
+- Socketed Movement Skills have no Mana Cost
+- Adds \d+ to \d+ Fire Damage to Wand Attacks
+- Adds \d+ to \d+ Cold Damage to Spells while wielding a Two Handed Weapon
+- +\d+% to maximum Block Chance
+- Lightning Damage and Shocking
+- Adds \d+ to \d+ Fire Damage to Spells
+- +\d+ to Dexterity and Intelligence
+- \d+% increased Spell Damage while wielding a Staff
+- Gain \d+% of Physical Damage as Extra Damage of a random Element
+- Adds \d+ to \d+ Physical Damage to Claw Attacks
+- Socketed Gems are Supported by Level \d+ Lesser Multiple Projectiles
+- Grants Level \d+ Discipline Skill
+- Infested Earth
+- Socketed Gems have \d+% more Attack and Cast Speed
+- All Monster Damage from Hits always Ignites
+- Socketed Gems are Supported by Level \d+ Spell Echo
+- \d+% increased Spell Damage per \d+ Strength
+- +\d+% to maximum Lightning Resistance
+- \d+% increased Area of Effect per Endurance Charge
+- \d+% chance to Gain Unholy Might for \d+ seconds on Melee Kill
+- Extra Life
+- \d+.\d+% of Physical Attack Damage Leeched as Mana
+- \d+% increased Weapon Critical Strike Chance while Dual Wielding
+- Socketed Gems are Supported by Level \d+ Immolate
+- \d+% increased Spell Damage per \d+ Dexterity
+- \d+ to \d+ Cold Damage per Frenzy Charge
+- \d+% increased Stun and Block Recovery
+- \d+% chance to Avoid being Frozen
+- Socketed Gems are Supported by Level \d+ Brutality
+- Projectiles deal \d+% increased Damage for each Enemy Pierced
+- Adds \d+ to \d+ Cold Damage to Attacks
+- \d+% increased Chaos Damage
+- Monsters cannot be slowed below base speed
+- Grants Level \d+ Decoy Totem Skill
+- Storm Herald
+- Rare Monsters each have a Nemesis Mod
+- \d+% chance to gain an Endurance Charge when you Hit a Bleeding Enemy
+- +\d+% chance to Evade Attacks
+- Ancestral Power
+- Adds \d+ to \d+ Lightning Damage to Dagger Attacks
+- Martyr's Grip
+- +\d+ to Armour
+- Minions deal \d+% increased Damage
+- \d+% increased Damage over Time while wielding a Two Handed Weapon
+- Releases Caustic Cloud on Death
+- \d+% increased Cast Speed while Dual Wielding
+- Players have Elemental Equilibrium
+- Socketed Gems are Supported by Level \d+ Arcane Surge
+- Leaps
+- Socketed Gems are Supported by Level \d+ Slower Projectiles
+- Grants Level \d+ Aspect of the Cat Skill
