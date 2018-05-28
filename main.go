@@ -3,12 +3,17 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 	"math/rand"
 	"os"
 	"time"
 )
 
 var exitingTheLoopErr = fmt.Errorf("Exiting the loop, sorry!")
+
+func abs(i float32) float32 {
+	return float32(math.Abs(float64(i)))
+}
 
 func checkErr(err error) {
 	if err != nil {
@@ -34,7 +39,7 @@ func main() {
 	case "generate-fields":
 		checkErr(generateFields("data/responses.bin"))
 	case "generate-input":
-		input, err := generateMLInput("data/responses.bin", 10000)
+		input, err := generateMLInput("data/responses.bin", 1000)
 		if err != nil {
 			if err == exitingTheLoopErr {
 				log.Printf(`Ignoring error "%s"`, err)
@@ -51,21 +56,18 @@ func main() {
 		checkErr(err)
 		evalFn, err := linearRegression(input)
 		checkErr(err)
+		// inSize := len(input.Fields)
 
-		c := 0
-		limit := 10
-		for {
-			c++
-			if c > limit {
-				break
-			}
-
-			sample := input.Fields[rand.Intn(len(input.Fields))]
+		log.Printf("Calculating accuracy")
+		for i := 0; i < 10; i++ {
+			sample := input.Fields[i]
+			originPrice := sample[0]
 			sampleResult, err := evalFn(sample)
 			checkErr(err)
-
-			log.Printf("For input %v y = %3.3f", sample[0], sampleResult)
+			errorRating := abs((sampleResult - originPrice) / originPrice * 100)
+			log.Printf("%5.0f -> %5.0f, error %5.0f%%", originPrice, sampleResult, errorRating)
 		}
+
 	default:
 		log.Fatalf("Uknown command %s", command)
 	}
