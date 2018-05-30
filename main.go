@@ -39,7 +39,7 @@ func main() {
 	case "generate-fields":
 		checkErr(generateFields("data/responses.bin"))
 	case "generate-input":
-		input, err := generateMLInput("data/responses.bin", 1000)
+		input, err := generateMLInput("data/responses.bin", 10)
 		if err != nil {
 			if err == exitingTheLoopErr {
 				log.Printf(`Ignoring error "%s"`, err)
@@ -56,11 +56,11 @@ func main() {
 		checkErr(err)
 		evalFn, err := linearRegression(input)
 		checkErr(err)
-		// inSize := len(input.Fields)
+		// inSize := len(input.rawData)
 
 		log.Printf("Calculating accuracy")
 		for i := 0; i < 10; i++ {
-			sample := input.Fields[i]
+			sample := input.rawData[i]
 			originPrice := sample[0]
 			sampleResult, err := evalFn(sample)
 			checkErr(err)

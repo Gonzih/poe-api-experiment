@@ -8,13 +8,18 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"gorgonia.org/tensor"
 )
 
 const defaultMLInputFname = "data/ml-input.bin"
 
 type MLInput struct {
-	Fields [][]float32
-	FName  string
+	rawData   []float32
+	Features  *tensor.Dense
+	FName     string
+	NFeatures int
+	NRows     int
 }
 
 func (in *MLInput) initFName() {
@@ -227,20 +232,20 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 			float32(len(cat.GetCards())),
 		}
 
-		exMods, ok := extractMods(item.GetExplicitMods(), fieldsConfiguration.ExplicitMods)
-		if ok {
-			fts = append(fts, exMods...)
-		}
+		// exMods, ok := extractMods(item.GetExplicitMods(), fieldsConfiguration.ExplicitMods)
+		// if ok {
+		// 	fts = append(fts, exMods...)
+		// }
 
-		imMods, ok := extractMods(item.GetImplicitMods(), fieldsConfiguration.ImplicitMods)
-		if ok {
-			fts = append(fts, imMods...)
-		}
+		// imMods, ok := extractMods(item.GetImplicitMods(), fieldsConfiguration.ImplicitMods)
+		// if ok {
+		// 	fts = append(fts, imMods...)
+		// }
 
-		props, ok := extractProperties(item.GetProperties(), fieldsConfiguration.Properties)
-		if ok {
-			fts = append(fts, props...)
-		}
+		// props, ok := extractProperties(item.GetProperties(), fieldsConfiguration.Properties)
+		// if ok {
+		// 	fts = append(fts, props...)
+		// }
 
 		return fts, true
 	}
@@ -263,7 +268,13 @@ func generateMLInputFromResponse(loopLimit int, mlInput *MLInput, fieldsConfigur
 								return exitingTheLoopErr
 							}
 
-							mlInput.Fields = append(mlInput.Fields, features)
+							mlInput.rawData = append(mlInput.rawData, features...)
+
+							if mlInput.NFeatures == 0 {
+								mlInput.NFeatures = len(features)
+							}
+
+							mlInput.NRows++
 						}
 					}
 				}
@@ -286,6 +297,12 @@ func generateMLInput(dbPath string, loopLimit int) (*MLInput, error) {
 	}
 
 	err = walkResponses(dbPath, generateMLInputFromResponse(loopLimit, mlInput, fieldsConfiguration))
+
+	var data []float32
+
+	mlInput.Features = tensor.New(tensor.WithBacking(mlInput.rawData), tensor.WithShape(mlInput.NRows, mlInput.NFeatures))
+
+	log.Println(mlInput.Features)
 
 	return mlInput, err
 }
