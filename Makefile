@@ -31,6 +31,9 @@ generate-input: build
 generate-fields: build
 	./poe generate-fields
 
+generate-csv: build
+	./poe generate-fields
+
 ml-main: build
 	./poe ml-main
 

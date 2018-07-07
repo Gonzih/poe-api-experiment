@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
 	"log"
 	"math"
 	"math/rand"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -49,6 +51,31 @@ func main() {
 		}
 
 		err = input.Save()
+		checkErr(err)
+	case "generate-csv":
+		input, err := generateMLInput("data/responses.bin", 1000)
+		if err != nil {
+			if err == exitingTheLoopErr {
+				log.Printf(`Ignoring error "%s"`, err)
+			} else {
+				log.Fatal(err)
+			}
+		}
+
+		w := csv.NewWriter(os.Stdout)
+
+		var stringRow []string = make([]string, len(input.Fields[0]))
+
+		for _, row := range input.Fields {
+			for i, f := range row {
+				stringRow[i] = strconv.FormatFloat(f, 'f', 6, 64)
+			}
+
+			if err := w.Write(stringRow); err != nil {
+				log.Fatal(err)
+			}
+		}
+
 		checkErr(err)
 	case "ml-main":
 		input := &MLInput{}
