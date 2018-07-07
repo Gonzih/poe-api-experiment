@@ -13,8 +13,8 @@ import (
 
 var exitingTheLoopErr = fmt.Errorf("Exiting the loop, sorry!")
 
-func abs(i float32) float32 {
-	return float32(math.Abs(float64(i)))
+func abs(i float64) float64 {
+	return float64(math.Abs(float64(i)))
 }
 
 func checkErr(err error) {
@@ -63,6 +63,13 @@ func main() {
 		}
 
 		w := csv.NewWriter(os.Stdout)
+
+		fields, err := loadFieldsConfiguration()
+
+		checkErr(err)
+
+		allFields := append(fields.Properties, fields.ImplicitMods...)
+		allFields = append(allFields, fields.ExplicitMods...)
 
 		var stringRow []string = make([]string, len(input.Fields[0]))
 
