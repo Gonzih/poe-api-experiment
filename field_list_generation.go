@@ -53,8 +53,8 @@ func saveFieldsOnDisk(fields *fieldsForExtraction) error {
 
 var numRegexp = regexp.MustCompile(`\+?\d+`)
 
-func parseModString(input string) (float32, string) {
-	var n float32
+func parseModString(input string) (float64, string) {
+	var n float64
 	nums := numRegexp.FindAllString(input, -1)
 
 	if len(nums) > 0 {
@@ -62,13 +62,13 @@ func parseModString(input string) (float32, string) {
 			i, err := strconv.ParseInt(num, 10, 64)
 
 			if err != nil {
-				log.Fatalf(`Unable to parse "%s" in to float32`, num)
+				log.Fatalf(`Unable to parse "%s" in to float64`, num)
 			}
 
-			n += float32(i)
+			n += float64(i)
 		}
 
-		n /= float32(len(nums))
+		n /= float64(len(nums))
 	} else {
 		n = 1
 	}

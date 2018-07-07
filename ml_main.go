@@ -10,8 +10,8 @@ import (
 	"gorgonia.org/tensor"
 )
 
-func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
-	cols := make([][]float32, len(input[0]))
+func generateTensors(input [][]float64, vecSize int) (ts []tensor.Tensor) {
+	cols := make([][]float64, len(input[0]))
 
 	for _, row := range input {
 		for i, v := range row {
@@ -30,16 +30,16 @@ func generateTensors(input [][]float32, vecSize int) (ts []tensor.Tensor) {
 
 // y = i0*a0 + i1*a1 + i2*a2 + c
 
-// We want to find an `m` and a `c` that fits the equation well. We'll do it in both float32 and float32 to showcase the extensibility of Gorgonia
+// We want to find an `m` and a `c` that fits the equation well. We'll do it in both float64 and float64 to showcase the extensibility of Gorgonia
 
-func linearRegression(mlInput *MLInput) (func([]float32) (float32, error), error) {
+func linearRegression(mlInput *MLInput) (func([]float64) (float64, error), error) {
 	nInputs := len(mlInput.Fields[0]) - 1
 	vecSize := len(mlInput.Fields)
 	tensors := generateTensors(mlInput.Fields, vecSize)
 
 	g := NewGraph()
 
-	y := NewVector(g, Float32, WithShape(vecSize), WithName("y"), WithValue(tensors[0]))
+	y := NewVector(g, Float64, WithShape(vecSize), WithName("y"), WithValue(tensors[0]))
 
 	log.Printf("Input len: %d, input[0] len: %d, tensors len: %d", vecSize, nInputs, len(tensors))
 
@@ -47,15 +47,15 @@ func linearRegression(mlInput *MLInput) (func([]float32) (float32, error), error
 
 	iss := make([]*Node, nInputs)
 	for i := range iss {
-		iss[i] = NewVector(g, Float32, WithShape(vecSize), WithName(fmt.Sprintf("i%d", i)), WithValue(tensors[i]))
+		iss[i] = NewVector(g, Float64, WithShape(vecSize), WithName(fmt.Sprintf("i%d", i)), WithValue(tensors[i]))
 	}
 
 	sss := make([]*Node, nInputs)
 	for i := range sss {
-		sss[i] = NewScalar(g, Float32, WithName(fmt.Sprintf("a%d", i)), WithValue(rand.Float32()))
+		sss[i] = NewScalar(g, Float64, WithName(fmt.Sprintf("a%d", i)), WithValue(rand.Float64()))
 	}
 
-	c := NewScalar(g, Float32, WithName("c"), WithValue(rand.Float32()))
+	c := NewScalar(g, Float64, WithName("c"), WithValue(rand.Float64()))
 
 	var expressions []*Node
 
@@ -127,7 +127,7 @@ func linearRegression(mlInput *MLInput) (func([]float32) (float32, error), error
 
 	// log.Println(output.String())
 
-	evaluationFn := func(in []float32) (out float32, err error) {
+	evaluationFn := func(in []float64) (out float64, err error) {
 		in = in[1:]
 
 		if len(in) != nInputs {
@@ -136,10 +136,10 @@ func linearRegression(mlInput *MLInput) (func([]float32) (float32, error), error
 		}
 
 		for i := range sss {
-			out += in[i] * sss[i].Value().Data().(float32)
+			out += in[i] * sss[i].Value().Data().(float64)
 		}
 
-		out += c.Value().Data().(float32)
+		out += c.Value().Data().(float64)
 
 		return
 	}

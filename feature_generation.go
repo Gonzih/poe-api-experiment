@@ -13,7 +13,7 @@ import (
 const defaultMLInputFname = "data/ml-input.bin"
 
 type MLInput struct {
-	Fields [][]float32
+	Fields [][]float64
 	FName  string
 }
 
@@ -76,7 +76,7 @@ func mapFrameType(t int64) string {
 	}
 }
 
-var priceTable = map[string]float32{
+var priceTable = map[string]float64{
 	"chrom":   1,
 	"alt":     1.1,
 	"jew":     2,
@@ -117,7 +117,7 @@ func numOfLinkedSockets(sockets []*Socket) int64 {
 
 var priceRegexp = regexp.MustCompile(`\d+`)
 
-func parsePriceInChrom(input string) (float32, bool) {
+func parsePriceInChrom(input string) (float64, bool) {
 	if len(input) == 0 {
 		return 0, false
 	}
@@ -137,11 +137,11 @@ func parsePriceInChrom(input string) (float32, bool) {
 	n, err := strconv.ParseFloat(match, 64)
 
 	if err != nil {
-		log.Printf(`Unable to parse "%s" in to float32`, match)
+		log.Printf(`Unable to parse "%s" in to float64`, match)
 		return 0, false
 	}
 
-	var rate float32
+	var rate float64
 
 	for k, p := range priceTable {
 		if strings.Contains(input, k) {
@@ -150,13 +150,13 @@ func parsePriceInChrom(input string) (float32, bool) {
 		}
 	}
 
-	return float32(n) * rate, true
+	return float64(n) * rate, true
 }
 
-func extractProperties(props []*Property, names []string) ([]float32, bool) {
-	parsedProps := make(map[string]float32, len(props))
-	out := make([]float32, len(names))
-	var v float32
+func extractProperties(props []*Property, names []string) ([]float64, bool) {
+	parsedProps := make(map[string]float64, len(props))
+	out := make([]float64, len(names))
+	var v float64
 
 	for _, prop := range props {
 
@@ -179,9 +179,9 @@ func extractProperties(props []*Property, names []string) ([]float32, bool) {
 	return out, true
 }
 
-func extractMods(mods []string, names []string) ([]float32, bool) {
-	parsedMods := make(map[string]float32, len(mods))
-	out := make([]float32, len(names))
+func extractMods(mods []string, names []string) ([]float64, bool) {
+	parsedMods := make(map[string]float64, len(mods))
+	out := make([]float64, len(names))
 
 	for _, mod := range mods {
 		value, name := parseModString(mod)
@@ -195,7 +195,7 @@ func extractMods(mods []string, names []string) ([]float32, bool) {
 	return out, true
 }
 
-func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtraction) ([]float32, bool) {
+func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtraction) ([]float64, bool) {
 	note := item.GetNote()
 
 	price, ok := parsePriceInChrom(note)
@@ -203,28 +203,28 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 	if item.GetFrameType() == 2 && ok {
 		// log.Printf(`"%s": %3.3f`, note, price)
 
-		var corrupted float32
+		var corrupted float64
 		if item.GetCorrupted() {
 			corrupted = 1
 		}
 
 		cat := item.GetCategory()
 
-		fts := []float32{
+		fts := []float64{
 			price,
-			float32(item.GetIlvl()),
-			float32(len(item.GetSockets())),
-			float32(numOfLinkedSockets(item.GetSockets())),
+			float64(item.GetIlvl()),
+			float64(len(item.GetSockets())),
+			float64(numOfLinkedSockets(item.GetSockets())),
 			corrupted,
-			float32(len(cat.GetAccessories())),
-			float32(len(cat.GetArmour())),
-			float32(len(cat.GetJewels())),
-			float32(len(cat.GetWeapons())),
-			float32(len(cat.GetGems())),
-			float32(len(cat.GetFlasks())),
-			float32(len(cat.GetMaps())),
-			float32(len(cat.GetCurrency())),
-			float32(len(cat.GetCards())),
+			float64(len(cat.GetAccessories())),
+			float64(len(cat.GetArmour())),
+			float64(len(cat.GetJewels())),
+			float64(len(cat.GetWeapons())),
+			float64(len(cat.GetGems())),
+			float64(len(cat.GetFlasks())),
+			float64(len(cat.GetMaps())),
+			float64(len(cat.GetCurrency())),
+			float64(len(cat.GetCards())),
 		}
 
 		exMods, ok := extractMods(item.GetExplicitMods(), fieldsConfiguration.ExplicitMods)
@@ -245,7 +245,7 @@ func extractFeaturesFromAnItem(item *Item, fieldsConfiguration *fieldsForExtract
 		return fts, true
 	}
 
-	return []float32{}, false
+	return []float64{}, false
 }
 
 func generateMLInputFromResponse(loopLimit int, mlInput *MLInput, fieldsConfiguration *fieldsForExtraction) func(*Response) error {

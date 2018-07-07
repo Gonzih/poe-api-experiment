@@ -9,7 +9,7 @@ import (
 func TestExtractMod(t *testing.T) {
 	data := map[string]struct {
 		n string
-		v float32
+		v float64
 	}{
 		"+27 to Intelligence":                              {v: 27, n: "\\d+ to Intelligence"},
 		"101% increased Critical Strike Chance for Spells": {v: 101, n: "\\d+% increased Critical Strike Chance for Spells"},

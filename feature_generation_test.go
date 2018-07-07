@@ -21,7 +21,7 @@ func TestMapFrameType(t *testing.T) {
 }
 
 func TestPriceParsing(t *testing.T) {
-	testPrices := map[string]float32{
+	testPrices := map[string]float64{
 		"~price 3 chaos":      42,
 		"~b/o 10 chaos":       140,
 		"~price 1 chaos each": 14,
@@ -45,10 +45,10 @@ func TestPriceParsing(t *testing.T) {
 func TestMLInputPersistancy(t *testing.T) {
 	fname := "/tmp/test-ml-input.bin"
 
-	in := &MLInput{Fields: [][]float32{
-		[]float32{1, 2, 3},
-		[]float32{4, 5, 6},
-		[]float32{7, 8, 9},
+	in := &MLInput{Fields: [][]float64{
+		[]float64{1, 2, 3},
+		[]float64{4, 5, 6},
+		[]float64{7, 8, 9},
 	}, FName: fname}
 
 	err := in.Save()
