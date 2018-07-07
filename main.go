@@ -17,9 +17,13 @@ func abs(i float64) float64 {
 	return float64(math.Abs(float64(i)))
 }
 
-func checkErr(err error) {
+func must(err error) {
 	if err != nil {
-		log.Fatal(err)
+		if err == exitingTheLoopErr {
+			log.Printf(`Ignoring error "%s"`, err)
+		} else {
+			log.Fatal(err)
+		}
 	}
 }
 
@@ -29,40 +33,34 @@ func main() {
 	command := os.Args[1]
 	switch command {
 	case "pull":
-		checkErr(pull("data/responses.bin"))
+		must(pull("data/responses.bin"))
 
 	case "list":
-		checkErr(walkResponses("data/responses.bin", func(r *Response) error {
+		must(walkResponses("data/responses.bin", func(r *Response) error {
 			fmt.Printf("%s\n", r.GetNextChangeId())
 			return nil
 		}))
 	case "last-id":
 		log.Printf("Last ID: %s", lastNextChangeID("data/responses.bin"))
 	case "generate-fields":
-		checkErr(generateFields("data/responses.bin"))
+		must(generateFields("data/responses.bin"))
 	case "generate-input":
 		input, err := generateMLInput("data/responses.bin", 1000)
-		if err != nil {
-			if err == exitingTheLoopErr {
-				log.Printf(`Ignoring error "%s"`, err)
-			} else {
-				log.Fatal(err)
-			}
-		}
+		must(err)
 
 		err = input.Save()
-		checkErr(err)
+		must(err)
 	case "generate-csv":
 
 		f, err := os.OpenFile("data/data.csv", os.O_RDWR|os.O_CREATE, 0755)
 		defer f.Close()
-		checkErr(err)
+		must(err)
 
 		w := csv.NewWriter(f)
 
 		fields, err := loadFieldsConfiguration()
 
-		checkErr(err)
+		must(err)
 
 		allFields := []string{
 			"price",
@@ -86,7 +84,7 @@ func main() {
 		allFields = append(allFields, fields.ExplicitMods...)
 
 		err = w.Write(allFields)
-		checkErr(err)
+		must(err)
 
 		var stringRow []string = make([]string, len(allFields))
 
@@ -99,14 +97,14 @@ func main() {
 				err = w.Write(stringRow)
 				return err
 			})
-		checkErr(err)
+		must(err)
 
 	case "ml-main":
 		input := &MLInput{}
 		err := input.Load()
-		checkErr(err)
+		must(err)
 		evalFn, err := linearRegression(input)
-		checkErr(err)
+		must(err)
 		// inSize := len(input.Fields)
 
 		log.Printf("Calculating accuracy")
@@ -114,7 +112,7 @@ func main() {
 			sample := input.Fields[i]
 			originPrice := sample[0]
 			sampleResult, err := evalFn(sample)
-			checkErr(err)
+			must(err)
 			errorRating := abs((sampleResult - originPrice) / originPrice * 100)
 			log.Printf("%5.0f -> %5.0f, error %5.0f%%", originPrice, sampleResult, errorRating)
 		}
