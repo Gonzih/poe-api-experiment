@@ -35,7 +35,7 @@ func TestRealHttpRequest(t *testing.T) {
 			assert.True(t, true)
 		}
 
-		log.Println("Done!")
+		log.Printf("Done! %s", url)
 		log.Println(counter)
 
 		counter++

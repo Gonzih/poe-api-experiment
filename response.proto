@@ -17,6 +17,7 @@ message Stash {
   string stash = 5;
   string stashType = 6;
   repeated Item items = 7;
+  string league = 8;
 }
 
 message Item {
@@ -68,6 +69,14 @@ message Item {
   BoolString colour = 46 [(gogoproto.customtype) = "BoolStringT"];
   int64 socket = 47;
   bool thRaceReward = 48;
+  VaalProperty vaal = 49;
+}
+
+message VaalProperty {
+  string baseTypeName = 1;
+  repeated Property properties = 2;
+  repeated string explicitMods = 3;
+  string secDescrText = 4;
 }
 
 message Category {
