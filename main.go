@@ -53,16 +53,8 @@ func main() {
 		err = input.Save()
 		checkErr(err)
 	case "generate-csv":
-		input, err := generateMLInput("data/responses.bin", 1)
-		if err != nil {
-			if err == exitingTheLoopErr {
-				log.Printf(`Ignoring error "%s"`, err)
-			} else {
-				log.Fatal(err)
-			}
-		}
 
-		f, err := os.OpenFile("/tmp/fields.csv", os.O_RDWR|os.O_CREATE, 0755)
+		f, err := os.OpenFile("data/data.csv", os.O_RDWR|os.O_CREATE, 0755)
 		defer f.Close()
 		checkErr(err)
 
@@ -72,24 +64,43 @@ func main() {
 
 		checkErr(err)
 
-		allFields := append(fields.Properties, fields.ImplicitMods...)
+		allFields := []string{
+			"price",
+			"item level",
+			"num of sockets",
+			"num of linked sockets",
+			"corrupted",
+			"is accessory",
+			"is armour",
+			"is jweel",
+			"is weapon",
+			"is gem",
+			"is flask",
+			"is map",
+			"is currency",
+			"is card",
+		}
+
+		allFields = append(allFields, fields.Properties...)
+		allFields = append(allFields, fields.ImplicitMods...)
 		allFields = append(allFields, fields.ExplicitMods...)
 
 		err = w.Write(allFields)
 		checkErr(err)
 
-		var stringRow []string = make([]string, len(input.Fields[0]))
+		var stringRow []string = make([]string, len(allFields))
 
-		for _, row := range input.Fields {
-			for i, f := range row {
-				stringRow[i] = strconv.FormatFloat(f, 'f', 6, 64)
-			}
+		err = walkFeatures("data/responses.bin", 100000000,
+			func(features []float64) error {
+				for i, f := range features {
+					stringRow[i] = strconv.FormatFloat(f, 'f', 6, 64)
+				}
 
-			err = w.Write(stringRow)
-			checkErr(err)
-		}
-
+				err = w.Write(stringRow)
+				return err
+			})
 		checkErr(err)
+
 	case "ml-main":
 		input := &MLInput{}
 		err := input.Load()

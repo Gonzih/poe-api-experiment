@@ -289,3 +289,48 @@ func generateMLInput(dbPath string, loopLimit int) (*MLInput, error) {
 
 	return mlInput, err
 }
+
+func walkFeatures(dbPath string, loopLimit int, walkFn func([]float64) error) error {
+	log.Printf("Limiting to %d items", loopLimit)
+
+	fieldsConfiguration, err := loadFieldsConfiguration()
+
+	if err != nil {
+		return err
+	}
+
+	err = walkResponses(dbPath, lazilyWalkFeatures(loopLimit, fieldsConfiguration, walkFn))
+
+	return err
+
+}
+
+func lazilyWalkFeatures(loopLimit int, fieldsConfiguration *fieldsForExtraction, walkFn func([]float64) error) func(*Response) error {
+	var loopCounter int
+	var err error
+
+	return func(r *Response) error {
+		for _, stash := range r.Stashes {
+			if stash != nil {
+				for _, item := range stash.Items {
+					if item != nil {
+						features, ok := extractFeaturesFromAnItem(item, fieldsConfiguration)
+						if ok {
+							loopCounter++
+							if loopCounter > loopLimit {
+								return exitingTheLoopErr
+							}
+
+							err = walkFn(features)
+							if err != nil {
+								return err
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return nil
+	}
+}
