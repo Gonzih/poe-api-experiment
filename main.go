@@ -1,6 +1,7 @@
 package main
 
 import (
+	"compress/gzip"
 	"encoding/csv"
 	"fmt"
 	"log"
@@ -51,12 +52,13 @@ func main() {
 		err = input.Save()
 		must(err)
 	case "generate-csv":
-
-		f, err := os.OpenFile("data/data.csv", os.O_RDWR|os.O_CREATE, 0755)
+		f, err := os.OpenFile("data/data.csv.gz", os.O_RDWR|os.O_CREATE, 0755)
 		defer f.Close()
 		must(err)
 
-		w := csv.NewWriter(f)
+		gz := gzip.NewWriter(f)
+
+		w := csv.NewWriter(gz)
 
 		fields, err := loadFieldsConfiguration()
 
