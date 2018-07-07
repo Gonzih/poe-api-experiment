@@ -32,7 +32,7 @@ generate-fields: build
 	./poe generate-fields
 
 generate-csv: build
-	./poe generate-fields
+	./poe generate-csv
 
 ml-main: build
 	./poe ml-main

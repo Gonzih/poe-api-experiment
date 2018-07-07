@@ -85,7 +85,7 @@ func generateFields(dbPath string) error {
 
 	// c := 0
 
-	err := walkResponses("data.bin", func(r *Response) error {
+	err := walkResponses("data/responses.bin", func(r *Response) error {
 		for _, stash := range r.Stashes {
 			if stash != nil {
 				for _, item := range stash.Items {

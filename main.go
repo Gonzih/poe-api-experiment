@@ -53,7 +53,7 @@ func main() {
 		err = input.Save()
 		checkErr(err)
 	case "generate-csv":
-		input, err := generateMLInput("data/responses.bin", 1000)
+		input, err := generateMLInput("data/responses.bin", 1)
 		if err != nil {
 			if err == exitingTheLoopErr {
 				log.Printf(`Ignoring error "%s"`, err)
@@ -62,7 +62,11 @@ func main() {
 			}
 		}
 
-		w := csv.NewWriter(os.Stdout)
+		f, err := os.OpenFile("/tmp/fields.csv", os.O_RDWR|os.O_CREATE, 0755)
+		defer f.Close()
+		checkErr(err)
+
+		w := csv.NewWriter(f)
 
 		fields, err := loadFieldsConfiguration()
 
@@ -71,6 +75,9 @@ func main() {
 		allFields := append(fields.Properties, fields.ImplicitMods...)
 		allFields = append(allFields, fields.ExplicitMods...)
 
+		err = w.Write(allFields)
+		checkErr(err)
+
 		var stringRow []string = make([]string, len(input.Fields[0]))
 
 		for _, row := range input.Fields {
@@ -78,9 +85,8 @@ func main() {
 				stringRow[i] = strconv.FormatFloat(f, 'f', 6, 64)
 			}
 
-			if err := w.Write(stringRow); err != nil {
-				log.Fatal(err)
-			}
+			err = w.Write(stringRow)
+			checkErr(err)
 		}
 
 		checkErr(err)
